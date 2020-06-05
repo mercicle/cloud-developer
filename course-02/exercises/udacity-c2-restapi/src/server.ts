@@ -8,12 +8,13 @@ import bodyParser from 'body-parser';
 import { V0MODELS } from './controllers/v0/model.index';
 
 (async () => {
-  await sequelize.addModels(V0MODELS);
-  await sequelize.sync();
+
+  await sequelize.addModels(V0MODELS); //"await" means it async
+  await sequelize.sync(); // make sure db is in sync with models in sequalize does this by applying migrations
 
   const app = express();
   const port = process.env.PORT || 8080; // default port to listen
-  
+
   app.use(bodyParser.json());
 
   //CORS Should be restricted
@@ -29,7 +30,7 @@ import { V0MODELS } from './controllers/v0/model.index';
   app.get( "/", async ( req, res ) => {
     res.send( "/api/v0/" );
   } );
-  
+
 
   // Start the Server
   app.listen( port, () => {
