@@ -1,0 +1,216 @@
+
+Possible causes of issue of 502 Bad Gateway
+
+########################################################################
+
+https://knowledge.udacity.com/questions/56339
+
+https://knowledge.udacity.com/questions/50388 helped me.
+
+I added the following rule for inbound and outbound traffic for EC2 security group.
+
+PostgreSQL TCP 5432 0.0.0.0/0
+
+Also modified RDS instance security group to allow all inbound traffic
+
+PostgreSQL TCP 5432 0.0.0.0/0
+
+May be we need to choose the proper IP sets for the real work but this helped to resolve my issues.
+########################################################################
+https://knowledge.udacity.com/questions/119467
+
+eb terminate --all
+npm install
+npm run build
+eb init
+
+make sure you have added to the elasticbeanstalk config file:
+
+deploy:
+    artifact: ./www/Archive.zip
+
+eb create
+
+udagram-please-work-dev-dev.us-east-2.elasticbeanstalk.com
+
+########################################################################
+
+mercicle:udacity-c2-restapi mercicle$ eb init
+
+Select a default region
+1) us-east-1 : US East (N. Virginia)
+2) us-west-1 : US West (N. California)
+3) us-west-2 : US West (Oregon)
+4) eu-west-1 : EU (Ireland)
+5) eu-central-1 : EU (Frankfurt)
+6) ap-south-1 : Asia Pacific (Mumbai)
+7) ap-southeast-1 : Asia Pacific (Singapore)
+8) ap-southeast-2 : Asia Pacific (Sydney)
+9) ap-northeast-1 : Asia Pacific (Tokyo)
+10) ap-northeast-2 : Asia Pacific (Seoul)
+11) sa-east-1 : South America (Sao Paulo)
+12) cn-north-1 : China (Beijing)
+13) cn-northwest-1 : China (Ningxia)
+14) us-east-2 : US East (Ohio)
+15) ca-central-1 : Canada (Central)
+16) eu-west-2 : EU (London)
+17) eu-west-3 : EU (Paris)
+18) eu-north-1 : EU (Stockholm)
+19) eu-south-1 : EU (Milano)
+20) ap-east-1 : Asia Pacific (Hong Kong)
+21) me-south-1 : Middle East (Bahrain)
+22) af-south-1 : Africa (Cape Town)
+(default is 3): 14
+
+
+Enter Application Name
+(default is "udacity-c2-restapi"): udagram-fuck-sake-work-dev
+Application udagram-fuck-sake-work-dev has been created.
+
+It appears you are using Node.js. Is this correct?
+(Y/n): y
+Select a platform branch.
+1) Node.js 12 running on 64bit Amazon Linux 2
+2) Node.js 10 running on 64bit Amazon Linux 2
+3) Node.js running on 64bit Amazon Linux
+(default is 1): 1
+
+Cannot setup CodeCommit because there is no Source Control setup, continuing with initialization
+Do you want to set up SSH for your instances?
+(Y/n): n
+mercicle:udacity-c2-restapi mercicle$ eb create
+Enter Environment Name
+(default is udagram-fuck-sake-work-dev-dev):
+Enter DNS CNAME prefix
+(default is udagram-fuck-sake-work-dev-dev):
+
+Select a load balancer type
+1) classic
+2) application
+3) network
+(default is 2): 2
+
+
+Would you like to enable Spot Fleet requests for this environment?
+(y/N): n
+Uploading udagram-fuck-sake-work-dev/app-200606_162518.zip to S3. This may take a while.
+Upload Complete.
+Environment details for: udagram-fuck-sake-work-dev-dev
+  Application name: udagram-fuck-sake-work-dev
+  Region: us-east-2
+  Deployed Version: app-200606_162518
+  Environment ID: e-xs3shtb8aj
+  Platform: arn:aws:elasticbeanstalk:us-east-2::platform/Node.js 12 running on 64bit Amazon Linux 2/5.0.2
+  Tier: WebServer-Standard-1.0
+  CNAME: udagram-fuck-sake-work-dev-dev.us-east-2.elasticbeanstalk.com
+  Updated: 2020-06-06 20:25:21.513000+00:00
+Printing Status:
+2020-06-06 20:25:20    INFO    createEnvironment is starting.
+2020-06-06 20:25:21    INFO    Using elasticbeanstalk-us-east-2-443919578847 as Amazon S3 storage bucket for environment data.
+2020-06-06 20:25:40    INFO    Created target group named: arn:aws:elasticloadbalancing:us-east-2:443919578847:targetgroup/awseb-AWSEB-1DVRWKSZDG9EP/52b2b7efe8fbe88c
+2020-06-06 20:25:40    INFO    Created security group named: sg-035236c033d0e0942
+2020-06-06 20:25:56    INFO    Created security group named: awseb-e-xs3shtb8aj-stack-AWSEBSecurityGroup-1GUJ2EBBZ5TP9
+2020-06-06 20:25:56    INFO    Created Auto Scaling launch configuration named: awseb-e-xs3shtb8aj-stack-AWSEBAutoScalingLaunchConfiguration-14SUHEOA4CH9O
+2020-06-06 20:26:42    INFO    Created Auto Scaling group named: awseb-e-xs3shtb8aj-stack-AWSEBAutoScalingGroup-KUMBL9XCUDS9
+2020-06-06 20:26:42    INFO    Waiting for EC2 instances to launch. This may take a few minutes.
+2020-06-06 20:26:57    INFO    Created Auto Scaling group policy named: arn:aws:autoscaling:us-east-2:443919578847:scalingPolicy:12b0f662-f97f-4771-8721-cd2e1a4784bf:autoScalingGroupName/awseb-e-xs3shtb8aj-stack-AWSEBAutoScalingGroup-KUMBL9XCUDS9:policyName/awseb-e-xs3shtb8aj-stack-AWSEBAutoScalingScaleDownPolicy-SCEI3FA6KGSA
+2020-06-06 20:26:58    INFO    Created Auto Scaling group policy named: arn:aws:autoscaling:us-east-2:443919578847:scalingPolicy:27438006-f4c6-4789-84f1-f47b71033fff:autoScalingGroupName/awseb-e-xs3shtb8aj-stack-AWSEBAutoScalingGroup-KUMBL9XCUDS9:policyName/awseb-e-xs3shtb8aj-stack-AWSEBAutoScalingScaleUpPolicy-1MMTMJ53SQWM7
+2020-06-06 20:26:58    INFO    Created CloudWatch alarm named: awseb-e-xs3shtb8aj-stack-AWSEBCloudwatchAlarmLow-8GUIHQY2U966
+2020-06-06 20:26:58    INFO    Created CloudWatch alarm named: awseb-e-xs3shtb8aj-stack-AWSEBCloudwatchAlarmHigh-1UERBWFX0NAOL
+2020-06-06 20:27:47    INFO    Created load balancer named: arn:aws:elasticloadbalancing:us-east-2:443919578847:loadbalancer/app/awseb-AWSEB-584JW3W76SNR/241c3e371a5cf44c
+2020-06-06 20:27:47    INFO    Created Load Balancer listener named: arn:aws:elasticloadbalancing:us-east-2:443919578847:listener/app/awseb-AWSEB-584JW3W76SNR/241c3e371a5cf44c/0b0e63920e6c8d25
+2020-06-06 20:29:12    INFO    Successfully launched environment: udagram-fuck-sake-work-dev-dev
+
+mercicle:udacity-c2-restapi mercicle$ eb logs
+ERROR: InvalidParameterValueError - No Environment found for EnvironmentName = 'udagram-fuck-sake-work-dev'.
+mercicle:udacity-c2-restapi mercicle$ eb logs udagram-fuck-sake-work-dev-dev
+Retrieving logs...
+
+Jun  6 20:28:12 ip-172-31-14-76 web: at Connection.emit (events.js:315:20)
+Jun  6 20:28:12 ip-172-31-14-76 web: at Connection.EventEmitter.emit (domain.js:482:12)
+Jun  6 20:28:12 ip-172-31-14-76 web: at Socket.reportStreamError (/var/app/current/node_modules/pg/lib/connection.js:73:10)
+Jun  6 20:28:12 ip-172-31-14-76 web: at Socket.emit (events.js:315:20)
+Jun  6 20:28:12 ip-172-31-14-76 web: at Socket.EventEmitter.emit (domain.js:482:12)
+Jun  6 20:28:12 ip-172-31-14-76 web: at emitErrorNT (internal/streams/destroy.js:92:8)
+Jun  6 20:28:12 ip-172-31-14-76 web: at emitErrorAndCloseNT (internal/streams/destroy.js:60:3)
+Jun  6 20:28:12 ip-172-31-14-76 web: at processTicksAndRejections (internal/process/task_queues.js:84:21)
+Jun  6 20:28:12 ip-172-31-14-76 web: (node:3969) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+Jun  6 20:28:12 ip-172-31-14-76 web: (node:3969) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+Jun  6 20:28:13 ip-172-31-14-76 web: > udacity-c2-restapi@1.0.0 start /var/app/current
+Jun  6 20:28:13 ip-172-31-14-76 web: > node .
+Jun  6 20:28:14 ip-172-31-14-76 web: (node:4000) UnhandledPromiseRejectionWarning: SequelizeConnectionRefusedError: connect ECONNREFUSED 127.0.0.1:5432
+Jun  6 20:28:14 ip-172-31-14-76 web: at /var/app/current/node_modules/sequelize/lib/dialects/postgres/connection-manager.js:170:24
+Jun  6 20:28:14 ip-172-31-14-76 web: at Connection.connectingErrorHandler (/var/app/current/node_modules/pg/lib/client.js:194:14)
+Jun  6 20:28:14 ip-172-31-14-76 web: at Connection.emit (events.js:315:20)
+Jun  6 20:28:14 ip-172-31-14-76 web: at Connection.EventEmitter.emit (domain.js:482:12)
+Jun  6 20:28:14 ip-172-31-14-76 web: at Socket.reportStreamError (/var/app/current/node_modules/pg/lib/connection.js:73:10)
+Jun  6 20:28:14 ip-172-31-14-76 web: at Socket.emit (events.js:315:20)
+Jun  6 20:28:14 ip-172-31-14-76 web: at Socket.EventEmitter.emit (domain.js:482:12)
+Jun  6 20:28:14 ip-172-31-14-76 web: at emitErrorNT (internal/streams/destroy.js:92:8)
+Jun  6 20:28:14 ip-172-31-14-76 web: at emitErrorAndCloseNT (internal/streams/destroy.js:60:3)
+Jun  6 20:28:14 ip-172-31-14-76 web: at processTicksAndRejections (internal/process/task_queues.js:84:21)
+Jun  6 20:28:14 ip-172-31-14-76 web: (node:4000) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+Jun  6 20:28:14 ip-172-31-14-76 web: (node:4000) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+Jun  6 20:28:14 ip-172-31-14-76 web: > udacity-c2-restapi@1.0.0 start /var/app/current
+Jun  6 20:28:14 ip-172-31-14-76 web: > node .
+Jun  6 20:28:15 ip-172-31-14-76 web: (node:4031) UnhandledPromiseRejectionWarning: SequelizeConnectionRefusedError: connect ECONNREFUSED 127.0.0.1:5432
+Jun  6 20:28:15 ip-172-31-14-76 web: at /var/app/current/node_modules/sequelize/lib/dialects/postgres/connection-manager.js:170:24
+Jun  6 20:28:15 ip-172-31-14-76 web: at Connection.connectingErrorHandler (/var/app/current/node_modules/pg/lib/client.js:194:14)
+Jun  6 20:28:15 ip-172-31-14-76 web: at Connection.emit (events.js:315:20)
+Jun  6 20:28:15 ip-172-31-14-76 web: at Connection.EventEmitter.emit (domain.js:482:12)
+Jun  6 20:28:15 ip-172-31-14-76 web: at Socket.reportStreamError (/var/app/current/node_modules/pg/lib/connection.js:73:10)
+Jun  6 20:28:15 ip-172-31-14-76 web: at Socket.emit (events.js:315:20)
+Jun  6 20:28:15 ip-172-31-14-76 web: at Socket.EventEmitter.emit (domain.js:482:12)
+Jun  6 20:28:15 ip-172-31-14-76 web: at emitErrorNT (internal/streams/destroy.js:92:8)
+Jun  6 20:28:15 ip-172-31-14-76 web: at emitErrorAndCloseNT (internal/streams/destroy.js:60:3)
+Jun  6 20:28:15 ip-172-31-14-76 web: at processTicksAndRejections (internal/process/task_queues.js:84:21)
+Jun  6 20:28:15 ip-172-31-14-76 web: (node:4031) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+Jun  6 20:28:15 ip-172-31-14-76 web: (node:4031) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+
+
+
+########################################################################
+mercicle:udacity-c2-restapi mercicle$ eb logs
+Retrieving logs...
+
+
+Jun  6 01:44:41 ip-172-31-11-12 web: throw err;
+Jun  6 01:44:41 ip-172-31-11-12 web: ^
+Jun  6 01:44:41 ip-172-31-11-12 web: Error: Cannot find module '/var/app/current/src/server.js'. Please verify that the package.json has a valid "main" entry
+Jun  6 01:44:41 ip-172-31-11-12 web: at tryPackage (internal/modules/cjs/loader.js:322:19)
+Jun  6 01:44:41 ip-172-31-11-12 web: at Function.Module._findPath (internal/modules/cjs/loader.js:683:18)
+Jun  6 01:44:41 ip-172-31-11-12 web: at resolveMainPath (internal/modules/run_main.js:12:25)
+Jun  6 01:44:41 ip-172-31-11-12 web: at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:65:24)
+Jun  6 01:44:41 ip-172-31-11-12 web: at internal/main/run_main_module.js:17:47 {
+Jun  6 01:44:41 ip-172-31-11-12 web: code: 'MODULE_NOT_FOUND',
+Jun  6 01:44:41 ip-172-31-11-12 web: path: '/var/app/current/package.json',
+Jun  6 01:44:41 ip-172-31-11-12 web: requestPath: '/var/app/current'
+Jun  6 01:44:41 ip-172-31-11-12 web: }
+Jun  6 01:44:41 ip-172-31-11-12 web: npm ERR! code ELIFECYCLE
+Jun  6 01:44:41 ip-172-31-11-12 web: npm ERR! errno 1
+Jun  6 01:44:41 ip-172-31-11-12 web: npm ERR! udacity-c2-restapi@1.0.0 start: `node .`
+Jun  6 01:44:41 ip-172-31-11-12 web: npm ERR! Exit status 1
+Jun  6 01:44:41 ip-172-31-11-12 web: npm ERR!
+Jun  6 01:44:41 ip-172-31-11-12 web: npm ERR! Failed at the udacity-c2-restapi@1.0.0 start script.
+Jun  6 01:44:41 ip-172-31-11-12 web: npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+Jun  6 01:44:41 ip-172-31-11-12 web: npm ERR! A complete log of this run can be found in:
+Jun  6 01:44:41 ip-172-31-11-12 web: npm ERR!     /home/webapp/.npm/_logs/2020-06-06T01_44_41_065Z-debug.log
+
+2020/06/06 16:22:13 [error] 3765#0: *14612 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.37.91, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:22:21 [error] 3765#0: *14614 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.7.1, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:22:28 [error] 3765#0: *14616 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.37.91, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:22:36 [error] 3765#0: *14618 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.7.1, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:22:43 [error] 3765#0: *14620 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.37.91, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:22:51 [error] 3765#0: *14622 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.7.1, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:22:58 [error] 3765#0: *14624 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.37.91, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:23:06 [error] 3765#0: *14626 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.7.1, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:23:13 [error] 3765#0: *14628 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.37.91, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:23:21 [error] 3765#0: *14630 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.7.1, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:23:28 [error] 3765#0: *14632 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.37.91, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:23:36 [error] 3765#0: *14634 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.7.1, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:23:43 [error] 3765#0: *14636 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.37.91, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:23:51 [error] 3765#0: *14638 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.7.1, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:23:58 [error] 3765#0: *14640 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.37.91, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:24:06 [error] 3765#0: *14642 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.7.1, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:24:13 [error] 3765#0: *14644 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.37.91, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
+2020/06/06 16:24:21 [error] 3765#0: *14646 connect() failed (111: Connection refused) while connecting to upstream, client: 172.31.7.1, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:8080/", host: "172.31.11.12"
