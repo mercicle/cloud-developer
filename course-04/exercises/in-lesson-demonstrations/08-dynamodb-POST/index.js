@@ -7,10 +7,14 @@ const docClient = new AWS.DynamoDB.DocumentClient()
 const groupsTable = process.env.GROUPS_TABLE
 
 exports.handler = async (event) => {
+
   console.log('Processing event: ', event)
+
   const itemId = uuid.v4()
 
-  const parsedBody = JSON.parse(event.body)
+  const parsedBody = typeof event.body === "object" ? event.body : JSON.parse(event.body)
+
+  //const parsedBody = JSON.parse(event.body)
 
   const newItem = {
     id: itemId,
@@ -23,7 +27,7 @@ exports.handler = async (event) => {
   }).promise()
 
   return {
-    statusCode: 201,
+    statusCode: 201, //created
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
