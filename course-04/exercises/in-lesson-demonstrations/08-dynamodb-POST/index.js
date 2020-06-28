@@ -16,12 +16,14 @@ exports.handler = async (event) => {
 
   //const parsedBody = typeof event.body === "object" ? event.body : JSON.parse(event.body)
 
-  //const parsedBody = JSON.parse(event)
-  const parsedBody = event
+  const parsedBody = JSON.parse(event.body)
+  //const parsedBody = event
 
   const newItem = {
     id: itemId,
     ...parsedBody
+    //parsedBody.body.name,
+    //parsedBody.body.description
   }
 
   await docClient.put({
@@ -32,7 +34,8 @@ exports.handler = async (event) => {
   return {
     statusCode: 201,
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,OPTIONS,POST'
     },
     body: JSON.stringify({newItem})
   }
