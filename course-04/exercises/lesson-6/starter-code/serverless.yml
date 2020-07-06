@@ -16,10 +16,10 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
 
   stage: ${opt:stage, 'dev'}
-  region: ${opt:region, 'us-east-1'}
+  region: ${opt:region, 'us-east-2'}
 
   tracing:
     lambda: true
@@ -425,4 +425,3 @@ resources:
         Name: ${self:provider.environment.AUTH_0_SECRET_ID}
         Description: Auth0 secret
         KmsKeyId: !Ref KMSKey
-
