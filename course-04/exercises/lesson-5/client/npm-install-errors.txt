@@ -1,0 +1,779 @@
+mercicle:client mercicle$ npm i
+
+> fsevents@1.2.7 install /Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents
+> node install
+
+node-pre-gyp WARN Using request for node-pre-gyp https download
+node-pre-gyp WARN Tried to download(404): https://fsevents-binaries.s3-us-west-2.amazonaws.com/v1.2.7/fse-v1.2.7-node-v72-darwin-x64.tar.gz
+node-pre-gyp WARN Pre-built binaries not found for fsevents@1.2.7 and node@12.17.0 (node-v72 ABI, unknown) (falling back to source compile with node-gyp)
+node-pre-gyp WARN Pre-built binaries not installable for fsevents@1.2.7 and node@12.17.0 (node-v72 ABI, unknown) (falling back to source compile with node-gyp)
+node-pre-gyp WARN Hit error Connection closed while downloading tarball file
+  SOLINK_MODULE(target) Release/.node
+  SOLINK_MODULE(target) Release/.node
+  CXX(target) Release/obj.target/fse/fsevents.o
+  CXX(target) Release/obj.target/fse/fsevents.o
+../fsevents.cc:43:32: error: no template named 'Handle' in namespace 'v8'
+    static void Initialize(v8::Handle<v8::Object> exports);
+                           ~~~~^
+../fsevents.cc:43:32: error: no template named 'Handle' in namespace 'v8'
+    static void Initialize(v8::Handle<v8::Object> exports);
+                           ~~~~^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:89:11: warningIn file included from : ../fsevents.cc:'Set'73 :
+is deprecated:../src/constants.cc :Use89 :maybe11 version:  [-Wdeprecated-declarations]
+warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagNone").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagNone));
+          ^
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagNone").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagNone));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h::3498328::329::  notenote: : 'Set' expandedhas  frombeen  macroexplicitly  'V8_DEPRECATED'marked
+ deprecated here
+  declarator __attribute__((deprecated(message)))
+  V8_DEPRECATED("Use maybe version",
+                            ^
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:90:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagMustScanSubDirs").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagMustScanSubDirs));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: In file included from ../fsevents.cc'Set': 73has:
+ been../src/constants.cc :explicitly90 :marked11 :deprecated  herewarning
+: 'Set' is deprecated: Use   V8_DEPRECATED("Use maybe version",maybe
+ version  ^
+[-Wdeprecated-declarations]
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagMustScanSubDirs").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagMustScanSubDirs));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:91:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagUserDropped").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagUserDropped));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitlyIn file included from  ../fsevents.ccmarked: 73deprecated:
+ here../src/constants.cc:
+91:11: warning: 'Set'  V8_DEPRECATED("Use maybe version",
+is deprecated:  ^
+Use maybe version /Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h[-Wdeprecated-declarations]:328
+:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagUserDropped").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagUserDropped));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:92:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagKernelDropped").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagKernelDropped));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:92:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagKernelDropped").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagKernelDropped));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'In file included from
+../fsevents.cc:73:
+../src/constants.cc:93:11: warning:   declarator __attribute__((deprecated(message)))'Set'
+ is                            ^
+deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagEventIdsWrapped").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagEventIdsWrapped));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:93:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagEventIdsWrapped").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagEventIdsWrapped));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+In file included from ../fsevents.cc:73/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:
+:328../src/constants.cc::2994:: 11: note: warningexpanded:  from 'Set'macro  is'V8_DEPRECATED' deprecated:
+ Use maybe version [-Wdeprecated-declarations]
+  declarator __attribute__((deprecated(message)))
+                            ^
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagHistoryDone").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagHistoryDone));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:94:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+In file included from ../fsevents.cc:73:
+../src/constants.cc:95:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagHistoryDone").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagHistoryDone));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagRootChanged").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagRootChanged));  V8_DEPRECATED("Use maybe version",
+
+          ^  ^
+
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h::3498328::329::  notenote: : 'Set'expanded  hasfrom  beenmacro  explicitly'V8_DEPRECATED' marked
+ deprecated here
+  declarator __attribute__((deprecated(message)))  V8_DEPRECATED("Use maybe version",
+
+                            ^  ^
+
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:95:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+In file included from ../fsevents.cc:73:
+../src/constants.cc:96:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagRootChanged").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagRootChanged));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagMount").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagMount));
+          ^
+  V8_DEPRECATED("Use maybe version",
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h  ^:
+3498:3: /Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:note328: :29'Set':  has beennote : explicitly expandedmarked  fromdeprecated  macrohere 'V8_DEPRECATED'
+
+  V8_DEPRECATED("Use maybe version",
+  ^
+  declarator __attribute__((deprecated(message)))
+                            ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:96:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+In file included from ../fsevents.cc:73:
+../src/constants.cc:97:11: warning: 'Set' is deprecated: Use maybe  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagMount").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagMount));
+version           ^[-Wdeprecated-declarations]
+
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagUnmount").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagUnmount));
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h          ^:
+328:29: /Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:note3498: :3expanded:  from macronote : 'V8_DEPRECATED''Set'
+ has been explicitly marked deprecated here
+  declarator __attribute__((deprecated(message)))
+                            ^
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:97:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+In file included from ../fsevents.cc:73:
+../src/constants.cc:98:11: warning:   object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagUnmount").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagUnmount));
+'Set'           ^is
+ deprecated: Use maybe/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h :version3498 :[-Wdeprecated-declarations]3:
+ note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note:   object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemCreated").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemCreated));
+expanded           ^from
+ macro 'V8_DEPRECATED'
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  declarator __attribute__((deprecated(message)))
+                            ^
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73In file included from :
+../fsevents.cc:../src/constants.cc73::
+98:../src/constants.cc11::99 :11:warning : warning'Set':  is 'Set'deprecated:  isUse  deprecated:maybe  Useversion  maybe[-Wdeprecated-declarations] version
+ [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemCreated").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemCreated));
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemRemoved").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemRemoved));
+          ^
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h3498::34983::3 : note: note: 'Set' 'Set'has  hasbeen  beenexplicitly  explicitlymarked  markeddeprecated  deprecatedhere here
+
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note:   V8_DEPRECATED("Use maybe version",expanded
+ from   ^macro
+ 'V8_DEPRECATED'
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro  declarator __attribute__((deprecated(message)))
+'V8_DEPRECATED'                            ^
+
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from In file included from ../fsevents.cc../fsevents.cc::7373:
+:
+../src/constants.cc../src/constants.cc::10099::1111::  warningwarning: : 'Set''Set'  isis  deprecated:deprecated:  UseUse  maybemaybe  versionversion  [-Wdeprecated-declarations][-Wdeprecated-declarations]
+
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemRemoved").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemRemoved));
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemInodeMetaMod").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemInodeMetaMod));
+          ^
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h::33498:: 3: note: note: 'Set' 'Set'has  hasbeen  beenexplicitly  explicitlymarked  markeddeprecated  deprecatedhere here
+
+  V8_DEPRECATED("Use maybe version",  V8_DEPRECATED("Use maybe version",
+
+  ^  ^
+
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h::328328::2929::  notenote: : expandedexpanded  fromfrom  macromacro  'V8_DEPRECATED''V8_DEPRECATED'
+
+  declarator __attribute__((deprecated(message)))  declarator __attribute__((deprecated(message)))
+
+                            ^                            ^
+
+In file included from ../fsevents.cc:73:
+../src/constants.cc:101:11: warning: In file included from ../fsevents.cc'Set': 73is:
+ deprecated:../src/constants.cc :Use100 :maybe11 :version  [-Wdeprecated-declarations]warning
+: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemRenamed").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemRenamed));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3:   object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemInodeMetaMod").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemInodeMetaMod));
+note:           ^
+'Set' has been explicitly/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h :marked3498 :deprecated3 :here
+note: 'Set' has been explicitly marked   V8_DEPRECATED("Use maybe version",deprecated
+ here  ^
+
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29:   V8_DEPRECATED("Use maybe version",note
+:   ^expanded
+ from macro 'V8_DEPRECATED'/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:
+328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+In file included from ../src/constants.cc../fsevents.cc::10173::
+11:../src/constants.cc :102:warning11: : 'Set' warningis:  deprecated: 'Set'Use  ismaybe  deprecated:version  Use[-Wdeprecated-declarations] maybe
+ version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemRenamed").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemRenamed));
+          ^
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemModified").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemModified));
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:          ^3498
+:3: note/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h: :3498'Set': 3has:  been explicitlynote : marked 'Set'deprecated  hashere been
+ explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:  V8_DEPRECATED("Use maybe version",328
+:29  ^:
+ note: expanded/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h :from328 :macro29 :'V8_DEPRECATED'
+note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:102:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]In file included from
+../fsevents.cc:73:
+../src/constants.cc:103:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemModified").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemModified));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemFinderInfoMod").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemFinderInfoMod));
+          ^
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3:/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h :328:note29: : 'Set' hasnote : been expandedexplicitly  frommarked  macrodeprecated  'V8_DEPRECATED'here
+
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+  declarator __attribute__((deprecated(message)))
+In file included from                             ^
+../fsevents.cc:73:
+../src/constants.cc:103:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemFinderInfoMod").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemFinderInfoMod));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macroIn file included from  ../fsevents.cc'V8_DEPRECATED':73
+:
+../src/constants.cc:104:11: warning: 'Set' is   declarator __attribute__((deprecated(message)))deprecated:
+ Use                            ^
+maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemChangeOwner").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemChangeOwner));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:104:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemChangeOwner").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemChangeOwner));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+In file included from ../fsevents.cc:73:
+../src/constants.cc  V8_DEPRECATED("Use maybe version",:
+105:  ^11
+: warning: /Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:'Set'328 :is29 :deprecated:  Use notemaybe:  versionexpanded  [-Wdeprecated-declarations]from
+macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemXattrMod").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemXattrMod));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:105:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemXattrMod").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemXattrMod));
+          ^
+In file included from /Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h../fsevents.cc::349873::
+3:../src/constants.cc :106:note11: : 'Set' haswarning : been explicitly'Set'  markedis  deprecateddeprecated:  hereUse
+maybe version [-Wdeprecated-declarations]
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemIsFile").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemIsFile));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3:  declarator __attribute__((deprecated(message)))
+note                            ^:
+'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:106:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+In file included from ../fsevents.cc:73:
+../src/constants.cc:107:11: warning: 'Set' is deprecated: Use maybe   object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemIsFile").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemIsFile));version
+ [-Wdeprecated-declarations]          ^
+
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemIsDir").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemIsDir));  ^
+
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h::293498:: 3: note: noteexpanded:  from'Set'  macrohas  'V8_DEPRECATED'been
+explicitly marked deprecated here
+  declarator __attribute__((deprecated(message)))
+  V8_DEPRECATED("Use maybe version",
+                            ^
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:107:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+In file included from ../fsevents.cc:73:
+../src/constants.cc:108:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemIsDir").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemIsDir));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemIsSymlink").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemIsSymlink));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h  V8_DEPRECATED("Use maybe version",:
+3498:  ^3
+: note: /Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h'Set': 328has: 29been:  explicitly markednote : deprecated expandedhere from
+ macro 'V8_DEPRECATED'
+  V8_DEPRECATED("Use maybe version",
+  ^
+  declarator __attribute__((deprecated(message)))
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h                            ^:
+328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:73:
+../src/constants.cc:108:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemIsSymlink").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemIsSymlink));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+../fsevents.cc:76:16:../fsevents.cc :76:error16: : variable errorhas:  incomplete variabletype  has'void' incomplete
+ type 'void'
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+               ^
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+               ^
+../fsevents.cc:76:31: error: no member named 'Handle' in namespace 'v8'
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+                          ~~~~^
+../fsevents.cc:76:48: error: expected '(' for function-style cast or type construction
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+                                     ~~~~~~~~~~^
+../fsevents.cc:76:31: error: no member named 'Handle' in namespace 'v8'
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+                          ~~~~^
+../fsevents.cc:76:48: error: expected '(' for function-style cast or type construction
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+                                     ~~~~~~~~~~^
+../fsevents.cc:76:50: error: use of undeclared identifier 'exports'
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+                                                 ^
+../fsevents.cc:76:50: error: use of undeclared identifier 'exports'
+../fsevents.cc:76:58: void FSEvents::Initialize(v8::Handle<v8::Object> exports) {error
+:                                                  ^expected
+ ';' after top level declarator
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+                                                         ^
+                                                         ;
+../fsevents.cc:76:58: error: expected ';' after top level declarator
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+                                                         ^
+                                                         ;
+20 warnings and 6 errors generated.
+20 warnings and 6 errors generated.
+make: *** [Release/obj.target/fse/fsevents.o] Error 1
+make: *** [Release/obj.target/fse/fsevents.o] Error 1
+gyp ERR! build error
+gypgyp ERR! stack Error: `make` failed with exit code: 2
+gyp ERR! stack     at ChildProcess.onExit (/usr/local/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:194:23)
+gyp ERR! stack     at ChildProcess.emit (events.js:315:20)
+gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:275:12)
+ ERR! build error
+gyp ERR! System Darwin 17.7.0
+gyp ERR! command "/usr/local/bin/node" "/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "build" "--fallback-to-build" "--module=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64/fse.node" "--module_name=fse" "--module_path=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64" "--napi_version=6" "--node_abi_napi=napi"
+gyp ERR! cwd /Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents
+gyp ERR! node -v v12.17.0
+gypgyp ERR!  node-gyp -v v5.1.0
+gypERR!  ERR! not ok
+stack Error: `make` failed with exit code: 2
+gyp ERR! stack     at ChildProcess.onExit (/usr/local/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:194:23)
+gyp ERR! stack     at ChildProcess.emit (events.js:315:20)
+gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:275:12)
+gyp ERR! System Darwin 17.7.0
+gyp ERR! command "/usr/local/bin/node" "/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "build" "--fallback-to-build" "--module=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64/fse.node" "--module_name=fse" "--module_path=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64" "--napi_version=6" "--node_abi_napi=napi"
+gyp ERR! cwd /Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents
+gyp ERR! node -v v12.17.0
+gyp ERR! node-gyp -v v5.1.0
+gyp ERR! not ok
+node-pre-gyp ERR! build error
+node-pre-gyp ERR! stack Error: Failed to execute '/usr/local/bin/node /usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --module=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64/fse.node --module_name=fse --module_path=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64 --napi_version=6 --node_abi_napi=napi' (1)
+node-pre-gyp ERR! stack     at ChildProcess.<anonymous> (/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents/node_modules/node-pre-gyp/lib/util/compile.js:83:29)
+node-pre-gyp ERR! stack     at ChildProcess.emit (events.js:315:20)
+node-pre-gyp ERR! stack     at maybeClose (internal/child_process.js:1021:16)
+node-pre-gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:286:5)
+node-pre-gyp ERR! System Darwin 17.7.0
+node-pre-gyp ERR! command "/usr/local/bin/node" "/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents/node_modules/node-pre-gyp/bin/node-pre-gyp" "install" "--fallback-to-build"
+node-pre-gyp ERR! cwd /Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents
+node-pre-gyp ERR! node -v v12.17.0
+node-pre-gyp ERR! node-pre-gyp -v v0.10.3
+node-pre-gyp ERR! not ok
+Failed to execute '/usr/local/bin/node /usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --module=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64/fse.node --module_name=fse --module_path=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/chokidar/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64 --napi_version=6 --node_abi_napi=napi' (1)
+
+> fsevents@1.2.4 install /Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/fsevents
+> node install
+
+node-pre-gyp WARN Tried to download(404): https://fsevents-binaries.s3-us-west-2.amazonaws.com/v1.2.4/fse-v1.2.4-node-v72-darwin-x64.tar.gz
+node-pre-gyp WARN Pre-built binaries not found for fsevents@1.2.4 and node@12.17.0 (node-v72 ABI, unknown) (falling back to source compile with node-gyp)
+  SOLINK_MODULE(target) Release/.node
+  CXX(target) Release/obj.target/fse/fsevents.o
+../fsevents.cc:50:32: error: no template named 'Handle' in namespace 'v8'
+    static void Initialize(v8::Handle<v8::Object> exports);
+                           ~~~~^
+../fsevents.cc:63:6: warning: field 'async_resource' will be initialized after field 'lockStarted' [-Wreorder]
+   : async_resource("fsevents:FSEvents"), lockStarted(false) {
+     ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:89:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagNone").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagNone));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:90:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagMustScanSubDirs").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagMustScanSubDirs));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:91:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagUserDropped").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagUserDropped));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:92:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagKernelDropped").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagKernelDropped));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:93:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagEventIdsWrapped").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagEventIdsWrapped));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:94:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagHistoryDone").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagHistoryDone));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:95:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagRootChanged").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagRootChanged));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:96:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagMount").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagMount));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:97:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagUnmount").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagUnmount));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:98:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemCreated").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemCreated));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:99:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemRemoved").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemRemoved));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:100:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemInodeMetaMod").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemInodeMetaMod));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:101:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemRenamed").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemRenamed));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:102:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemModified").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemModified));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:103:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemFinderInfoMod").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemFinderInfoMod));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:104:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemChangeOwner").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemChangeOwner));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:105:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemXattrMod").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemXattrMod));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:106:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemIsFile").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemIsFile));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:107:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemIsDir").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemIsDir));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+In file included from ../fsevents.cc:82:
+../src/constants.cc:108:11: warning: 'Set' is deprecated: Use maybe version [-Wdeprecated-declarations]
+  object->Set(Nan::New<v8::String>("kFSEventStreamEventFlagItemIsSymlink").ToLocalChecked(), Nan::New<v8::Integer>(kFSEventStreamEventFlagItemIsSymlink));
+          ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8.h:3498:3: note: 'Set' has been explicitly marked deprecated here
+  V8_DEPRECATED("Use maybe version",
+  ^
+/Users/mercicle/Library/Caches/node-gyp/12.17.0/include/node/v8config.h:328:29: note: expanded from macro 'V8_DEPRECATED'
+  declarator __attribute__((deprecated(message)))
+                            ^
+../fsevents.cc:85:16: error: variable has incomplete type 'void'
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+               ^
+../fsevents.cc:85:31: error: no member named 'Handle' in namespace 'v8'
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+                          ~~~~^
+../fsevents.cc:85:48: error: expected '(' for function-style cast or type construction
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+                                     ~~~~~~~~~~^
+../fsevents.cc:85:50: error: use of undeclared identifier 'exports'
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+                                                 ^
+../fsevents.cc:85:58: error: expected ';' after top level declarator
+void FSEvents::Initialize(v8::Handle<v8::Object> exports) {
+                                                         ^
+                                                         ;
+21 warnings and 6 errors generated.
+make: *** [Release/obj.target/fse/fsevents.o] Error 1
+gyp ERR! build error
+gyp ERR! stack Error: `make` failed with exit code: 2
+gyp ERR! stack     at ChildProcess.onExit (/usr/local/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:194:23)
+gyp ERR! stack     at ChildProcess.emit (events.js:315:20)
+gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:275:12)
+gyp ERR! System Darwin 17.7.0
+gyp ERR! command "/usr/local/bin/node" "/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "build" "--fallback-to-build" "--module=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64/fse.node" "--module_name=fse" "--module_path=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64" "--napi_version=6" "--node_abi_napi=napi"
+gyp ERR! cwd /Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/fsevents
+gyp ERR! node -v v12.17.0
+gyp ERR! node-gyp -v v5.1.0
+gyp ERR! not ok
+node-pre-gyp ERR! build error
+node-pre-gyp ERR! stack Error: Failed to execute '/usr/local/bin/node /usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --module=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64/fse.node --module_name=fse --module_path=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64 --napi_version=6 --node_abi_napi=napi' (1)
+node-pre-gyp ERR! stack     at ChildProcess.<anonymous> (/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/fsevents/node_modules/node-pre-gyp/lib/util/compile.js:83:29)
+node-pre-gyp ERR! stack     at ChildProcess.emit (events.js:315:20)
+node-pre-gyp ERR! stack     at maybeClose (internal/child_process.js:1021:16)
+node-pre-gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:286:5)
+node-pre-gyp ERR! System Darwin 17.7.0
+node-pre-gyp ERR! command "/usr/local/bin/node" "/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/fsevents/node_modules/node-pre-gyp/bin/node-pre-gyp" "install" "--fallback-to-build"
+node-pre-gyp ERR! cwd /Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/fsevents
+node-pre-gyp ERR! node -v v12.17.0
+node-pre-gyp ERR! node-pre-gyp -v v0.10.0
+node-pre-gyp ERR! not ok
+Failed to execute '/usr/local/bin/node /usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --module=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64/fse.node --module_name=fse --module_path=/Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64 --napi_version=6 --node_abi_napi=napi' (1)
+
+> fsevents@1.2.13 install /Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/watchpack-chokidar2/node_modules/fsevents
+> node install.js
+
+  SOLINK_MODULE(target) Release/.node
+  CXX(target) Release/obj.target/fse/fsevents.o
+  SOLINK_MODULE(target) Release/fse.node
+ld: warning: text-based stub file /System/Library/Frameworks//CoreFoundation.framework/CoreFoundation.tbd and library file /System/Library/Frameworks//CoreFoundation.framework/CoreFoundation are out of sync. Falling back to library file for linking.
+ld: warning: text-based stub file /System/Library/Frameworks//CoreServices.framework/CoreServices.tbd and library file /System/Library/Frameworks//CoreServices.framework/CoreServices are out of sync. Falling back to library file for linking.
+ld: warning: text-based stub file /System/Library/Frameworks//CFNetwork.framework/Versions/A/CFNetwork.tbd and library file /System/Library/Frameworks//CFNetwork.framework/Versions/A/CFNetwork are out of sync. Falling back to library file for linking.
+ld: warning: text-based stub file /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices.tbd and library file /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices are out of sync. Falling back to library file for linking.
+ld: warning: text-based stub file /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices.tbd and library file /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices are out of sync. Falling back to library file for linking.
+ld: warning: text-based stub file /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SharedFileList.framework/Versions/A/SharedFileList.tbd and library file /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SharedFileList.framework/Versions/A/SharedFileList are out of sync. Falling back to library file for linking.
+
+> styled-components@4.3.2 postinstall /Users/mercicle/_Udacity/CloudDeveloper/my-cloud-developer-repo/course-04/exercises/lesson-5/client/node_modules/styled-components
+> node ./scripts/postinstall.js || exit 0
+
+Use styled-components at work? Consider supporting our development efforts at https://opencollective.com/styled-components
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.7 (node_modules/chokidar/node_modules/fsevents):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.7 install: `node install`
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Exit status 1
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 (node_modules/fsevents):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 install: `node install`
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Exit status 1
+
+added 1977 packages from 839 contributors and audited 2111 packages in 163.591s
+
+12 packages are looking for funding
+  run `npm fund` for details
+
+found 1978 vulnerabilities (1199 low, 8 moderate, 771 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
