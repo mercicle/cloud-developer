@@ -103,7 +103,7 @@ functions:
           method: post
           path: groups
           cors: true
-          authorizer: RS256Auth
+          authorizer: Auth
           reqValidatorName: RequestBodyValidator
           documentation:
             summary: Create a new group
@@ -124,7 +124,7 @@ functions:
     events:
       - http:
           method: post
-          authorizer: RS256Auth
+          authorizer: Auth
           path: groups/{groupId}/images
           cors: true
           reqValidatorName: RequestBodyValidator
