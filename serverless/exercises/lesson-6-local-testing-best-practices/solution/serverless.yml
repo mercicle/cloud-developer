@@ -21,6 +21,7 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-2'}
 
+  # enable xray tracing 
   tracing:
     lambda: true
     apiGateway: true
