@@ -1,7 +1,13 @@
 
 # Welcome
 
-Hi! This repo has all of my projects and course related work from Udacity's Cloud Developer Nanodegree.
+Hi! This repo has all of my projects and course related work and research from Udacity's Cloud Developer Nanodegree.
+
+# Accounts and Software
+
+# Helpful Websites
+
+# Helpful Snippets
 
 # Full Stack Apps Section
 
