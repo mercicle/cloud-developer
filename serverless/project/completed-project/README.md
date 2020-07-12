@@ -12,11 +12,11 @@ With default RS256:
 Step 2: Create and Configure: `Auth` - this function should implement a custom authorizer for API Gateway that should be added to all other functions.
 
   - First updated the server side with the JSON Web Key Set in the auth0Authorizer.ts
-  - Now the implementation with JSON Web Key Set. There were two options from lessons. One is to use the rs256Auth0Authorizer and `cert` from Auth0 and the other is to use `AWS KMS`. I wasn't sure how to now utilize the `jwksUrl` to download the certificate until reading [this post](https://knowledge.udacity.com/questions/203918) which suggestion has the `Axios` package for getting and parsing the certifacte from the url:
+  - Now the implementation with JSON Web Key Set. There were two options from lessons. One is to use the rs256Auth0Authorizer and `cert` from Auth0 and the other is to use `AWS KMS`. I wasn't sure how to now utilize the `jwksUrl` to download the certificate until reading [this post](https://knowledge.udacity.com/questions/203918) which suggestion has the `Axios` package for getting and parsing the certificate from the url. Also found [this thread](https://knowledge.udacity.com/questions/214229) useful in understanding this authentication method.
 
-  npm package:
+
+  Axios npm package:
   https://www.npmjs.com/package/axios
-
 
 
 Step 3: Create and Configure: `GenerateUploadUrl` - returns a pre-signed URL that can be used to upload an attachment file for a TODO item.
