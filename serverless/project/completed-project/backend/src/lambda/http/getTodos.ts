@@ -20,6 +20,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
         ScanIndexForward: false
     }
 
+    //https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#query-property
     const returnedQueryPromise = await dynamoDocClient.query(dynamoQuery).promise()
     const itemsReturned = returnedQueryPromise.Items
 

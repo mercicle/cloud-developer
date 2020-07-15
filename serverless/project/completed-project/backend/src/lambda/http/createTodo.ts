@@ -21,6 +21,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
   const newItem = { todoId: todoID, userId: userID, ...newTodo }
 
+  //https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#put-property
   await dynamoDocClient.put({TableName: TODOS_TABLE, Item: newItem}).promise()
 
   return {statusCode: STATUS_CREATED,
