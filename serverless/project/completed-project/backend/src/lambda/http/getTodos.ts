@@ -26,7 +26,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     const itemsReturned = returnedQueryPromise.Items
 
     return { statusCode: STATUS_OK,
-              headers: { 'Access-Control-Allow-Origin': '*' },
+              headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
               body: JSON.stringify({ itemsReturned })
            }
 }

@@ -32,11 +32,9 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   }
 
   await docClient.update(updateUrlObject).promise()
-  
+
   return { statusCode: STATUS_CREATED,
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
+            headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
             body: JSON.stringify({ imageUrl: imageURL, uploadUrl: signedURL})
          }
 }

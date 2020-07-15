@@ -16,7 +16,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
     // https://stackoverflow.com/questions/2342579/http-status-code-for-update-and-delete
     return { statusCode: STATUS_OK,
-             headers: { 'Access-Control-Allow-Origin': '*' },
+             headers: { 'Access-Control-Allow-Origin': '*' , 'Access-Control-Allow-Credentials': true },
              body:'Item Deleted'
            }
 }

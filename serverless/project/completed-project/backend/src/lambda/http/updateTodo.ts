@@ -26,7 +26,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   await dynamoDocClient.update(params).promise()
 
   return { statusCode: STATUS_CREATED,
-           headers: {'Access-Control-Allow-Origin': '*'},
+           headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
            body: JSON.stringify(updatedTodo)
   }
 }
