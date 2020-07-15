@@ -1,5 +1,7 @@
 import 'source-map-support/register'
 
+import * as AWS from 'aws-sdk'
+
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
 
 import { UpdateTodoRequest } from '../../requests/UpdateTodoRequest'
@@ -21,12 +23,11 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     ReturnValues:"UPDATED_NEW"
   }
 
-  const returnedUpdatePromise = await dynamoDocClient.update(params).promise()
-  const updatedItems = returnedUpdatePromise.Items
+  await dynamoDocClient.update(params).promise()
 
   return { statusCode: STATUS_CREATED,
            headers: {'Access-Control-Allow-Origin': '*'},
-           body: JSON.stringify(updatedItems)
+           body: JSON.stringify(updatedTodo)
   }
 }
 

@@ -24,7 +24,6 @@ service:
 plugins:
   - serverless-webpack
   - serverless-iam-roles-per-function
-  - serverless-aws-documentation
 
 provider:
   name: aws
