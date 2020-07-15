@@ -6,6 +6,7 @@ import { getUserId } from '../utils'
 
 const dynamoDocClient = new AWS.DynamoDB.DocumentClient()
 const TODOS_TABLE = process.env.TODOS_TABLE
+const STATUS_OK = 200
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
 
@@ -24,7 +25,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     const returnedQueryPromise = await dynamoDocClient.query(dynamoQuery).promise()
     const itemsReturned = returnedQueryPromise.Items
 
-    return { statusCode: 200,
+    return { statusCode: STATUS_OK,
               headers: { 'Access-Control-Allow-Origin': '*' },
               body: JSON.stringify({ itemsReturned })
            }
