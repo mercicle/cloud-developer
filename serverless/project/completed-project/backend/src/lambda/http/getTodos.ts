@@ -27,8 +27,10 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     const returnedQueryPromise = await dynamoDocClient.query(dynamoQuery).promise()
     const itemsReturned = returnedQueryPromise.Items
 
+    // this thread helped me realize needed {items: }
+    //https://knowledge.udacity.com/questions/183910
     return { statusCode: STATUS_OK,
               headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
-              body: JSON.stringify({ itemsReturned })
+              body: JSON.stringify({ items: itemsReturned })
            }
 }
