@@ -29,6 +29,7 @@ Step 6: Create and Configure: `UpdateTodo` - should update a TODO item created b
 
 Step 7: Create and Configure: `DeleteTodo` - should delete a TODO item created by a current user. Expects an id of a TODO item to remove.
 
+Step 8: 
 
 # Serverless TODO
 

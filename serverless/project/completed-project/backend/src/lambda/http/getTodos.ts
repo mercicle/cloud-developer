@@ -6,6 +6,8 @@ import { getUserId } from '../utils'
 
 const dynamoDocClient = new AWS.DynamoDB.DocumentClient()
 const TODOS_TABLE = process.env.TODOS_TABLE
+const INDEX_NAME = process.env.INDEX_NAME
+
 const STATUS_OK = 200
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
@@ -15,7 +17,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
     const dynamoQuery = {
         TableName : TODOS_TABLE,
-        IndexName: "UserIdIndex",
+        IndexName: INDEX_NAME,
         KeyConditionExpression: 'userId = :userId',
         ExpressionAttributeValues: { ':userId': userID },
         ScanIndexForward: false
