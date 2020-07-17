@@ -6,7 +6,7 @@ import { getUserId } from '../utils'
 
 const dynamoDocClient = new AWS.DynamoDB.DocumentClient()
 const TODOS_TABLE = process.env.TODOS_TABLE
-const INDEX_NAME = process.env.INDEX_NAME
+//const INDEX_NAME = process.env.INDEX_NAME
 
 const STATUS_OK = 200
 
@@ -17,20 +17,22 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
     const dynamoQuery = {
         TableName : TODOS_TABLE,
-        IndexName: INDEX_NAME,
+        //IndexName: INDEX_NAME,
         KeyConditionExpression: 'userId = :userId',
         ExpressionAttributeValues: { ':userId': userID },
-        ScanIndexForward: false
     }
 
     //https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#query-property
     const returnedQueryPromise = await dynamoDocClient.query(dynamoQuery).promise()
     const itemsReturned = returnedQueryPromise.Items
 
+    const stringifiedItems = JSON.stringify({ items: itemsReturned })
+    console.log(`Returning TODOs: ${stringifiedItems}`)
+
     // this thread helped me realize needed {items: }
     //https://knowledge.udacity.com/questions/183910
     return { statusCode: STATUS_OK,
               headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
-              body: JSON.stringify({ items: itemsReturned })
+              body: stringifiedItems
            }
 }
