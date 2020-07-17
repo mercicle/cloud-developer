@@ -14,6 +14,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     const userID = getUserId(event)
 
     //https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#delete-property
+    // this thread made me realize I was missing userID in Key https://knowledge.udacity.com/questions/92594
     await dynamoDocClient.delete({ TableName: TODOS_TABLE, Key: { todoId: todoID , userId: userID} }).promise()
 
     // https://stackoverflow.com/questions/2342579/http-status-code-for-update-and-delete
