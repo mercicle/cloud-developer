@@ -24,6 +24,7 @@ service:
 plugins:
   - serverless-webpack
   - serverless-iam-roles-per-function
+  - serverless-reqvalidator-plugin
 
 provider:
   name: aws
@@ -101,6 +102,9 @@ functions:
         Action:
           - dynamodb:PutItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}/index/${self:provider.environment.INDEX_NAME}
+    request:
+      schema:
+        application/json: ${file(src/schemas/todo-item-create.json)}
 
   GetTodos:
     handler: src/lambda/http/getTodos.handler
@@ -138,6 +142,9 @@ functions:
         Action:
           - dynamodb:UpdateItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}/index/${self:provider.environment.INDEX_NAME}
+    request:
+      schema:
+        application/json: ${file(src/schemas/todo-item-update.json
 
   DeleteTodo:
     handler: src/lambda/http/deleteTodo.handler
@@ -195,7 +202,7 @@ resources:
             KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
         TableName: ${self:provider.environment.TODOS_TABLE}
-        GlobalSecondaryIndexes:
+        LocalSecondaryIndexes:
           - IndexName: ${self:provider.environment.INDEX_NAME}
             KeySchema:
               - AttributeName: userId
@@ -204,6 +211,34 @@ resources:
                 KeyType: RANGE
             Projection:
               ProjectionType: ALL
+
+# TodosTable:
+#   Type: AWS::DynamoDB::Table
+#   Properties:
+#     AttributeDefinitions:
+#       - AttributeName: partitionKey
+#         AttributeType: S
+#       - AttributeName: sortKey
+#         AttributeType: S
+#       - AttributeName: indexKey
+#         AttributeType: S
+#     KeySchema:
+#       - AttributeName: partitionKey
+#         KeyType: HASH
+#       - AttributeName: sortKey
+#         KeyType: RANGE
+#     BillingMode: PAY_PER_REQUEST
+#     TableName: ${self:provider.environment.TODOS_TABLE}
+#     LocalSecondaryIndexes:
+#       - IndexName: ${self:provider.environment.INDEX_NAME}
+#         KeySchema:
+#           - AttributeName: partitionKey
+#             KeyType: HASH
+#           - AttributeName: indexKey
+#             KeyType: RANGE
+#         Projection:
+#           ProjectionType: ALL # What attributes will be copied to an index
+
 
     TodosImageBucket:
       Type: AWS::S3::Bucket
