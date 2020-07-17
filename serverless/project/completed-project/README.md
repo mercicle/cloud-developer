@@ -20,7 +20,7 @@ Create and Configure: `Auth` - this function should implement a custom authorize
 
   - Axios npm package: https://www.npmjs.com/package/axios
 
-Step 3: (24 commits) to implement both the services and the configuration. The troubleshooting mostly involved the secondary indexing and query format for dynamodb (and the relationship between the two) and the return structure.
+Step 2: (24 commits) to implement both the services and the configuration. The troubleshooting mostly involved the secondary indexing and query format for dynamodb (and the relationship between the two) and the return structure.
   - Create and Configure: `GenerateUploadUrl` - returns a pre-signed URL that can be used to upload an attachment file for a TODO item.
   - Create and Configure: `CreateTodo` - should create a new TODO for a current user. A shape of data send by a client application to this function can be found in the `CreateTodoRequest.ts` file
   - Create and Configure: `GetTodos` - should return all TODOs for a current user. A user id can be extracted from a JWT token that is sent by the frontend
@@ -44,10 +44,7 @@ The following video and screenshots are for the project submission.
 ![cloudwatch](./screenshots/cloudwatch-screenshot.png)
 
 ## Lambda
-![lambda](./screenshots/lambda-screenshot.png)
-
-
-
+![lambda](./screenshots/lambdas-screenshot.png)
 
 
 
