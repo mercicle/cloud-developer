@@ -5,29 +5,38 @@ import * as AWS from 'aws-sdk'
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
 
 import { UpdateTodoRequest } from '../../requests/UpdateTodoRequest'
+import { getUserId } from '../utils'
 
 const dynamoDocClient = new AWS.DynamoDB.DocumentClient()
 const TODOS_TABLE = process.env.TODOS_TABLE
+const INDEX_NAME = process.env.INDEX_NAME
+
 const STATUS_CREATED = 201
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
 
   const todoID = event.pathParameters.todoId
+  const userID = getUserId(event)
+
   const updatedTodo: UpdateTodoRequest = JSON.parse(event.body)
 
-  const params = {
+  const dynamoQuery = {
+
     TableName: TODOS_TABLE,
-    Key: { "todoId": todoID },
+    IndexName: INDEX_NAME,
+
+    Key: { todoId: todoID , userId: userID},
     UpdateExpression: "set name =:n, dueDate =:dd, done =:d",
-    ExpressionAttributeValues:{ ":n": updatedTodo["name"], ":dd": updatedTodo["dueDate"], ":d": updatedTodo["done"]},
-    ReturnValues:"UPDATED_NEW"
+    ExpressionAttributeValues: { ":n": updatedTodo["name"], ":dd": updatedTodo["dueDate"], ":d": updatedTodo["done"]},
+    ReturnValues: "UPDATED_NEW"
+
   }
 
-  await dynamoDocClient.update(params).promise()
+  const updatedItem = await dynamoDocClient.update(dynamoQuery).promise()
 
   return { statusCode: STATUS_CREATED,
            headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
-           body: JSON.stringify(updatedTodo)
+           body: JSON.stringify(updatedItem)
   }
 }
 
