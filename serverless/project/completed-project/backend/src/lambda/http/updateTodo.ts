@@ -20,14 +20,16 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
   const updatedTodo: UpdateTodoRequest = JSON.parse(event.body)
 
+  // name is a reserved keyword: https://knowledge.udacity.com/questions/201486
   const dynamoQuery = {
 
     TableName: TODOS_TABLE,
     IndexName: INDEX_NAME,
 
     Key: { todoId: todoID , userId: userID},
-    UpdateExpression: "set name =:n, dueDate =:dd, done =:d",
-    ExpressionAttributeValues: { ":n": updatedTodo["name"], ":dd": updatedTodo["dueDate"], ":d": updatedTodo["done"]},
+    ExpressionAttributeNames: { "#N": "name" },
+    UpdateExpression: "set #N=:todoName, dueDate =:dueDate, done =:done",
+    ExpressionAttributeValues: { ":todoName": updatedTodo.name, ":dueDate": updatedTodo.dueDate, ":done": updatedTodo.done},
     ReturnValues: "UPDATED_NEW"
 
   }
@@ -36,9 +38,27 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
   return { statusCode: STATUS_CREATED,
            headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
-           body: JSON.stringify(updatedItem)
+           body: JSON.stringify({updatedTodo: updatedItem})
   }
 }
+
+// from https://knowledge.udacity.com/questions/201486
+// async updateTodo(userId: string, todoId: string, updatedTodo: UpdateTodoRequest) {
+//       const updtedTodo = await this.docClient.update({
+//           TableName: this.todosTable,
+//           Key: { userId, todoId },
+//           ExpressionAttributeNames: { "#N": "name" },
+//           UpdateExpression: "set #N=:todoName, dueDate=:dueDate, done=:done",
+//           ExpressionAttributeValues: {
+//             ":todoName": updatedTodo.name,
+//             ":dueDate": updatedTodo.dueDate,
+//             ":done": updatedTodo.done
+//         },
+//         ReturnValues: "UPDATED_NEW"
+//       })
+//       .promise();
+//     return { Updated: updtedTodo };
+//   }
 
 //Example from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.NodeJs.03.html#GettingStarted.NodeJs.03.03
 // var params = {
