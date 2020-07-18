@@ -66,6 +66,13 @@ functions:
 
   Auth:
     handler: src/lambda/auth/auth0Authorizer.handler
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - "xray:PutTraceSegments"
+          - "xray:PutTelemetryRecords"
+        Resource:
+          - "*"
 
   GenerateUploadUrl:
     handler: src/lambda/http/generateUploadUrl.handler
@@ -86,7 +93,12 @@ functions:
           - dynamodb:UpdateItem
           - dynamodb:Query
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
-
+      - Effect: Allow
+        Action:
+          - "xray:PutTraceSegments"
+          - "xray:PutTelemetryRecords"
+        Resource:
+          - "*"
   CreateTodo:
     handler: src/lambda/http/createTodo.handler
     events:
@@ -100,7 +112,7 @@ functions:
             summary: Create a new todo
             description: Create a new todo item
             requestModels:
-              'application/json': GroupRequest
+              'application/json': CreateTodo
 
     iamRoleStatements:
       - Effect: Allow
@@ -111,10 +123,12 @@ functions:
         Action:
           - dynamodb:PutItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}/index/${self:provider.environment.INDEX_NAME}
-    request:
-      schema:
-        application/json: ${file(src/schemas/todo-item-create.json)}
-
+      - Effect: Allow
+        Action:
+          - "xray:PutTraceSegments"
+          - "xray:PutTelemetryRecords"
+        Resource:
+          - "*"
   GetTodos:
     handler: src/lambda/http/getTodos.handler
     events:
@@ -132,7 +146,12 @@ functions:
         Action:
           - dynamodb:Query
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}/index/${self:provider.environment.INDEX_NAME}
-
+      - Effect: Allow
+        Action:
+          - "xray:PutTraceSegments"
+          - "xray:PutTelemetryRecords"
+        Resource:
+          - "*"
   UpdateTodo:
     handler: src/lambda/http/updateTodo.handler
     events:
@@ -141,6 +160,12 @@ functions:
           path: todos/{todoId}
           cors: true
           authorizer: Auth
+          reqValidatorName: RequestBodyValidator
+          documentation:
+            summary: Update a todo
+            description: Update a todo item
+            requestModels:
+              'application/json': UpdateTodo
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -151,9 +176,12 @@ functions:
         Action:
           - dynamodb:UpdateItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}/index/${self:provider.environment.INDEX_NAME}
-    request:
-      schema:
-        application/json: ${file(src/schemas/todo-item-update.json
+      - Effect: Allow
+        Action:
+          - "xray:PutTraceSegments"
+          - "xray:PutTelemetryRecords"
+        Resource:
+          - "*"
 
   DeleteTodo:
     handler: src/lambda/http/deleteTodo.handler
@@ -173,13 +201,15 @@ functions:
         Action:
           - dynamodb:DeleteItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}/index/${self:provider.environment.INDEX_NAME}
-
+      - Effect: Allow
+        Action:
+          - "xray:PutTraceSegments"
+          - "xray:PutTelemetryRecords"
+        Resource:
+          - "*"
 resources:
-
   # many patterns pasted from lesson 5
-
   Resources:
-
     # used template from lesson 5 but and added DELETE, PATCH
     # these are in the methods available here:
     # https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods

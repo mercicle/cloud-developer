@@ -21,7 +21,7 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-2'}
 
-  # enable xray tracing 
+  # enable xray tracing
   tracing:
     lambda: true
     apiGateway: true
@@ -96,6 +96,7 @@ custom:
       migrate: true
 
   documentation:
+
     api:
       info:
         version: v1.0.0
@@ -108,6 +109,7 @@ custom:
       - name: ImageRequest
         contentType: application/json
         schema: ${file(models/create-image-request.json)}
+
 
 functions:
 
