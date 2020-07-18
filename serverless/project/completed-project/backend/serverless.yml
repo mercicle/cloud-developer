@@ -25,8 +25,10 @@ plugins:
   - serverless-webpack
   - serverless-iam-roles-per-function
   - serverless-reqvalidator-plugin
+  - serverless-aws-documentation
 
 provider:
+
   name: aws
   runtime: nodejs12.x
 
@@ -38,6 +40,22 @@ provider:
     INDEX_NAME: UserIdIndex
     TODO_IMAGES_S3_BUCKET: merc-sls-todos-attached-images-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
+
+custom:
+
+  documentation:
+    api:
+      info:
+        version: v1.0.1
+        title: TODO App
+        description: Serverless application for todo list
+    models:
+      - name: CreateTodo
+        contentType: application/json
+        schema: ${file(schemas/todo-item-create.json)}
+      - name: UpdateTodo
+        contentType: application/json
+        schema: ${file(schemas/todo-item-update.json)}
 
 functions:
 
@@ -72,6 +90,12 @@ functions:
           path: todos
           cors: true
           authorizer: Auth
+          reqValidatorName: RequestBodyValidator
+          documentation:
+            summary: Create a new todo
+            description: Create a new todo item
+            requestModels:
+              'application/json': GroupRequest
 
     iamRoleStatements:
       - Effect: Allow
@@ -192,32 +216,14 @@ resources:
             Projection:
               ProjectionType: ALL
 
-# TodosTable:
-#   Type: AWS::DynamoDB::Table
-#   Properties:
-#     AttributeDefinitions:
-#       - AttributeName: partitionKey
-#         AttributeType: S
-#       - AttributeName: sortKey
-#         AttributeType: S
-#       - AttributeName: indexKey
-#         AttributeType: S
-#     KeySchema:
-#       - AttributeName: partitionKey
-#         KeyType: HASH
-#       - AttributeName: sortKey
-#         KeyType: RANGE
-#     BillingMode: PAY_PER_REQUEST
-#     TableName: ${self:provider.environment.TODOS_TABLE}
-#     LocalSecondaryIndexes:
-#       - IndexName: ${self:provider.environment.INDEX_NAME}
-#         KeySchema:
-#           - AttributeName: partitionKey
-#             KeyType: HASH
-#           - AttributeName: indexKey
-#             KeyType: RANGE
-#         Projection:
-#           ProjectionType: ALL # What attributes will be copied to an index
+    RequestBodyValidator:
+      Type: AWS::ApiGateway::RequestValidator
+      Properties:
+        Name: 'request-body-validator'
+        RestApiId:
+          Ref: ApiGatewayRestApi
+        ValidateRequestBody: true
+        ValidateRequestParameters: false
 
 
     TodosImageBucket:
