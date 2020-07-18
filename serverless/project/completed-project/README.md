@@ -46,6 +46,9 @@ The following video and screenshots are for the project submission.
 ## Lambda
 ![lambda](./screenshots/lambdas-screenshot.png)
 
+## XRay Screenshot
+![xray](./screenshots/xray-screenshot.png)
+
 
 
 # How to run the application
