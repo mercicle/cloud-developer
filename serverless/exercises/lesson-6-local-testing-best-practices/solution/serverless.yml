@@ -141,6 +141,7 @@ functions:
             description: Create a new group
             requestModels:
               'application/json': GroupRequest
+
     deploymentSettings:
       type: Linear10PercentEvery1Minute
       alias: Live

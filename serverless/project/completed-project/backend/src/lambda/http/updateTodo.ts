@@ -1,13 +1,16 @@
 import 'source-map-support/register'
 
 import * as AWS from 'aws-sdk'
+import * as AWSXRay from 'aws-xray-sdk'
 
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
 
 import { UpdateTodoRequest } from '../../requests/UpdateTodoRequest'
 import { getUserId } from '../utils'
 
-const dynamoDocClient = new AWS.DynamoDB.DocumentClient()
+const XAWS = AWSXRay.captureAWS(AWS)
+
+const dynamoDocClient = new XAWS.DynamoDB.DocumentClient()
 const TODOS_TABLE = process.env.TODOS_TABLE
 const INDEX_NAME = process.env.INDEX_NAME
 

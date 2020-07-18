@@ -3,11 +3,16 @@ import 'source-map-support/register'
 import { APIGatewayProxyEvent, APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda'
 
 import * as AWS from 'aws-sdk'
+import * as AWSXRay from 'aws-xray-sdk'
+
 import * as uuid from 'uuid'
 import { getUserId } from '../utils'
 
-const dynamoDocClient = new AWS.DynamoDB.DocumentClient()
-const s3 = new AWS.S3({signatureVersion: 'v4'})
+const XAWS = AWSXRay.captureAWS(AWS)
+
+const dynamoDocClient = new XAWS.DynamoDB.DocumentClient()
+const s3 = new XAWS.S3({signatureVersion: 'v4'})
+
 const STATUS_CREATED = 201
 const TODOS_TABLE = process.env.TODOS_TABLE
 const INDEX_NAME = process.env.INDEX_NAME
