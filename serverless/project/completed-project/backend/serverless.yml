@@ -41,6 +41,11 @@ provider:
     TODO_IMAGES_S3_BUCKET: merc-sls-todos-attached-images-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
 
+  # enable xray tracing
+  tracing:
+    lambda: true
+    apiGateway: true
+
 custom:
 
   documentation:
