@@ -3,6 +3,8 @@ import * as uuid from 'uuid'
 
 // models and requests
 import { TodoItem } from '../models/TodoItem'
+import { TodoUpdate} from '../models/TodoUpdate'
+
 import { CreateTodoRequest } from '../requests/CreateTodoRequest'
 import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
 
@@ -19,14 +21,12 @@ export async function createTodo(createTodoRequest: CreateTodoRequest, userId: s
     return await todoAccess.createTodo(createObject)
 }
 
-export async function updateTodo(updateTodoRequest: UpdateTodoRequest, userId: string, todoId: string): Promise<TodoItem>{
-    const updateObject = {userId: userId, todoId: todoId, name: updateTodoRequest.name, dueDate: updateTodoRequest.dueDate, done: updateTodoRequest.done }
-    return await todoAccess.updateTodo(updateObject)
+export async function updateTodo(updateTodoRequest: UpdateTodoRequest, userId: string, todoId: string): Promise<TodoUpdate>{
+    return await todoAccess.updateTodo(updateTodoRequest, userId, todoId)
 }
 
-export async function updateTodoUrl(updateTodo, userId: string, todoId: string): Promise<TodoItem>{
-    const updateObject = { userId: userId, todoId: todoId, name: updateTodo.name, attachmentUrl: updateTodo.attachmentUrl }
-    return await todoAccess.updateTodoUrl(updateObject)
+export async function updateTodoUrl(userId: string, todoId: string){
+    return await todoAccess.setTodoImageUrl(userId, todoId)
 }
 
 export async function deleteTodo(userId: string, todoId: string){
