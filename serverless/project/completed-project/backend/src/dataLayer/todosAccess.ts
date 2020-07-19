@@ -60,7 +60,7 @@ export class TodoAccess {
 
     }
 
-    async removeTodo(userID: string, todoID: string) {
+    async deleteTodo(userID: string, todoID: string) {
 
         const deleteQuery = { TableName: this.todoTable, Key: { todoId: todoID, userId: userID } }
 
@@ -74,7 +74,7 @@ export class TodoAccess {
       const result = await this.docClient.query(getQuery).promise()
       const items = result.Items
 
-      return items
+      return items as TodoItem[]
 
     }
 
@@ -84,7 +84,7 @@ export class TodoAccess {
         const result = await this.docClient.query(getAllQuery).promise()
         const items = result.Items
 
-        return items
+        return items as TodoItem[]
 
     }
 

@@ -1,16 +1,7 @@
 import 'source-map-support/register'
-
-import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
-import * as AWS from 'aws-sdk'
-//import * as AWSXRay from 'aws-xray-sdk'
-const AWSXRay = require('aws-xray-sdk')
-
+import { APIGatewayProxyEvent, APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda'
 import { getUserId } from '../utils'
-
-const XAWS = AWSXRay.captureAWS(AWS)
-
-const dynamoDocClient = new XAWS.DynamoDB.DocumentClient()
-const TODOS_TABLE = process.env.TODOS_TABLE
+import { deleteTodo } from '../../businessLogic/todo'
 
 const STATUS_OK = 200
 
@@ -21,11 +12,11 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
     //https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#delete-property
     //this thread made me realize I was missing userID in Key https://knowledge.udacity.com/questions/92594
-    const deleteTodo = await dynamoDocClient.delete({ TableName: TODOS_TABLE, Key: { todoId: todoID, userId: userID } }).promise()
+    const deleteTodoItem  = await deleteTodo(userID, todoID)
 
     // https://stackoverflow.com/questions/2342579/http-status-code-for-update-and-delete
     return { statusCode: STATUS_OK,
              headers: { 'Access-Control-Allow-Origin': '*' , 'Access-Control-Allow-Credentials': true },
-             body: JSON.stringify({deleted: deleteTodo})
+             body: JSON.stringify({deleted: deleteTodoItem})
            }
 }

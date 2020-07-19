@@ -12,7 +12,6 @@ import { TodoAccess } from '../dataLayer/todosAccess'
 // load the data interface
 const todoAccess = new TodoAccess()
 
-
 export async function createTodo(createTodoRequest: CreateTodoRequest, userId: string): Promise<TodoItem>{
     const createdAt = new Date().toISOString()
     const todoId = uuid.v4()
@@ -30,8 +29,8 @@ export async function updateTodoUrl(updateTodo, userId: string, todoId: string):
     return await todoAccess.updateTodoUrl(updateObject)
 }
 
-export async function removeTodo(userId: string, todoId: string){
-    return await todoAccess.removeTodo(userId, todoId)
+export async function deleteTodo(userId: string, todoId: string){
+    return await todoAccess.deleteTodo(userId, todoId)
 }
 
 export async function getTodo(userId: string, todoId: string): Promise<TodoItem[]>{
