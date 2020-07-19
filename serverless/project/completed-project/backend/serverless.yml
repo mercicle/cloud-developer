@@ -40,7 +40,8 @@ provider:
     INDEX_NAME: UserIdIndex
     TODO_IMAGES_S3_BUCKET: merc-sls-todos-attached-images-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
-
+    IS_OFFLINE: false
+    
   # enable xray tracing
   tracing:
     lambda: true
