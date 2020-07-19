@@ -1,6 +1,3 @@
-
-import * as uuid from 'uuid'
-
 // models and requests
 import { TodoItem } from '../models/TodoItem'
 import { TodoUpdate} from '../models/TodoUpdate'

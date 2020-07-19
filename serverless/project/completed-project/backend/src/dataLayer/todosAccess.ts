@@ -6,21 +6,21 @@ import { TodoItem } from '../models/TodoItem'
 import { TodoUpdate} from '../models/TodoUpdate'
 
 import { DocumentClient } from 'aws-sdk/clients/dynamodb'
-import { S3 } from 'aws-sdk/clients/s3'
+// import { S3 } from 'aws-sdk/clients/s3'
+//const S3 = require('aws-sdk/clients/s3');
 import * as uuid from 'uuid'
-
 
 export class TodoAccess {
 
     constructor(
         private readonly docClient: DocumentClient = createDynamoDBClient(),
-        private readonly s3Client: S3 = createS3Client(),
+        private readonly s3Client = createS3Client(),
         private readonly todoTable = process.env.TODOS_TABLE,
         private readonly todoIndex = process.env.INDEX_NAME,
         private readonly bucketName = process.env.TODO_IMAGES_S3_BUCKET,
         private readonly urlExpTime = parseInt(process.env.SIGNED_URL_EXPIRATION)){}
 
-    async createTodo(todoRequestObject: object): Promise<TodoItem> {
+    async createTodo(todoRequestObject: any): Promise<TodoItem> {
 
         const createdAt = new Date().toISOString()
         const todoId = uuid.v4()
@@ -32,7 +32,8 @@ export class TodoAccess {
 
         await this.docClient.put(putObject).promise()
 
-        return todoRequestObject
+        const returnObject = {userId: todoRequestObject.userId, todoId: todoRequestObject.todoId,  name: todoRequestObject.name, createdAt: todoRequestObject.createdAt, dueDate: todoRequestObject.dueDate, done: todoRequestObject.done}
+        return  returnObject
 
     }
 
@@ -117,15 +118,6 @@ export class TodoAccess {
 }
 
 function createDynamoDBClient() {
-
-  if (process.env.IS_OFFLINE) {
-    console.log('Creating a local DynamoDB instance')
-    return new XAWS.DynamoDB.DocumentClient({
-      region: 'localhost',
-      endpoint: 'http://localhost:8000'
-    })
-  }
-
   return new XAWS.DynamoDB.DocumentClient()
 }
 
