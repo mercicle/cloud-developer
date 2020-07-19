@@ -1,19 +1,8 @@
 import 'source-map-support/register'
-
-import * as AWS from 'aws-sdk'
-//import * as AWSXRay from 'aws-xray-sdk'
-const AWSXRay = require('aws-xray-sdk')
-
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
-
-import { UpdateTodoRequest } from '../../requests/UpdateTodoRequest'
 import { getUserId } from '../utils'
-
-const XAWS = AWSXRay.captureAWS(AWS)
-
-const dynamoDocClient = new XAWS.DynamoDB.DocumentClient()
-const TODOS_TABLE = process.env.TODOS_TABLE
-const INDEX_NAME = process.env.INDEX_NAME
+import { updateTodo } from '../../businessLogic/todo'
+import { UpdateTodoRequest } from '../../requests/UpdateTodoRequest'
 
 const STATUS_CREATED = 201
 
@@ -24,87 +13,10 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
   const updatedTodo: UpdateTodoRequest = JSON.parse(event.body)
 
-  // name is a reserved keyword: https://knowledge.udacity.com/questions/201486
-  const dynamoQuery = {
-
-    TableName: TODOS_TABLE,
-    IndexName: INDEX_NAME,
-
-    Key: { todoId: todoID , userId: userID},
-    ExpressionAttributeNames: { "#N": "name" },
-    UpdateExpression: "set #N=:todoName, dueDate =:dueDate, done =:done",
-    ExpressionAttributeValues: { ":todoName": updatedTodo.name, ":dueDate": updatedTodo.dueDate, ":done": updatedTodo.done},
-    ReturnValues: "UPDATED_NEW"
-
-  }
-
-  const updatedItem = await dynamoDocClient.update(dynamoQuery).promise()
+  const updatedItem = await updateTodo(updatedTodo, userID, todoID)
 
   return { statusCode: STATUS_CREATED,
            headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
            body: JSON.stringify({updatedTodo: updatedItem})
   }
 }
-
-// from https://knowledge.udacity.com/questions/201486
-// async updateTodo(userId: string, todoId: string, updatedTodo: UpdateTodoRequest) {
-//       const updtedTodo = await this.docClient.update({
-//           TableName: this.todosTable,
-//           Key: { userId, todoId },
-//           ExpressionAttributeNames: { "#N": "name" },
-//           UpdateExpression: "set #N=:todoName, dueDate=:dueDate, done=:done",
-//           ExpressionAttributeValues: {
-//             ":todoName": updatedTodo.name,
-//             ":dueDate": updatedTodo.dueDate,
-//             ":done": updatedTodo.done
-//         },
-//         ReturnValues: "UPDATED_NEW"
-//       })
-//       .promise();
-//     return { Updated: updtedTodo };
-//   }
-
-//Example from https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.NodeJs.03.html#GettingStarted.NodeJs.03.03
-// var params = {
-//     TableName:table,
-//     Key:{
-//         "year": year,
-//         "title": title
-//     },
-//     UpdateExpression: "set info.rating = :r, info.plot=:p, info.actors=:a",
-//     ExpressionAttributeValues:{
-//         ":r":5.5,
-//         ":p":"Everything happens all at once.",
-//         ":a":["Larry", "Moe", "Curly"]
-//     },
-//     ReturnValues:"UPDATED_NEW"
-// };
-//
-// console.log("Updating the item...");
-// docClient.update(params, function(err, data) {
-//     if (err) {
-//         console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
-//     } else {
-//         console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
-//     }
-// });
-
-
-// Example from https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html
-// var params = {
-//   TableName: 'Table',
-//   Key: { HashKey : 'hashkey' },
-//   UpdateExpression: 'set #a = :x + :y',
-//   ConditionExpression: '#a < :MAX',
-//   ExpressionAttributeNames: {'#a' : 'Sum'},
-//   ExpressionAttributeValues: {
-//     ':x' : 20,
-//     ':y' : 45,
-//     ':MAX' : 100,
-//   }
-// };
-//
-// documentClient.update(params, function(err, data) {
-//    if (err) console.log(err);
-//    else console.log(data);
-// });
