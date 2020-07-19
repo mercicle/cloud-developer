@@ -15,10 +15,8 @@ import { TodoAccess } from '../dataLayer/todosAccess'
 const todoAccess = new TodoAccess()
 
 export async function createTodo(createTodoRequest: CreateTodoRequest, userId: string): Promise<TodoItem>{
-    const createdAt = new Date().toISOString()
-    const todoId = uuid.v4()
-    const createObject = {userId: userId, todoId: todoId,  name: createTodoRequest.name, createdAt: createdAt, dueDate: createTodoRequest.dueDate, done: false}
-    return await todoAccess.createTodo(createObject)
+    createTodoRequest['userId'] = userId
+    return await todoAccess.createTodo(createTodoRequest)
 }
 
 export async function updateTodo(updateTodoRequest: UpdateTodoRequest, userId: string, todoId: string): Promise<TodoUpdate>{

@@ -20,13 +20,19 @@ export class TodoAccess {
         private readonly bucketName = process.env.TODO_IMAGES_S3_BUCKET,
         private readonly urlExpTime = parseInt(process.env.SIGNED_URL_EXPIRATION)){}
 
-    async createTodo(todo: TodoItem): Promise<TodoItem> {
+    async createTodo(todoRequestObject: object): Promise<TodoItem> {
 
-        const putObject = { TableName: this.todoTable, Item: todo}
+        const createdAt = new Date().toISOString()
+        const todoId = uuid.v4()
+        todoRequestObject['createdAt'] = createdAt
+        todoRequestObject['todoId'] = todoId
+        todoRequestObject['done'] = false
+
+        const putObject = { TableName: this.todoTable, Item: todoRequestObject}
 
         await this.docClient.put(putObject).promise()
 
-        return todo
+        return todoRequestObject
 
     }
 
