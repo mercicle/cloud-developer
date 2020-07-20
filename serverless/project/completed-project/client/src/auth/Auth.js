@@ -53,6 +53,7 @@ export default class Auth {
   }
 
   setSession(authResult) {
+
     // Set isLoggedIn flag in localStorage
     localStorage.setItem('isLoggedIn', 'true');
 
@@ -67,6 +68,7 @@ export default class Auth {
   }
 
   renewSession() {
+
     this.auth0.checkSession({}, (err, authResult) => {
        if (authResult && authResult.accessToken && authResult.idToken) {
          this.setSession(authResult);
@@ -88,7 +90,7 @@ export default class Auth {
     localStorage.removeItem('isLoggedIn');
 
     this.auth0.logout({
-      return_to: window.location.origin
+      return_to: authConfig.returnTo
     });
 
     // navigate to the home route

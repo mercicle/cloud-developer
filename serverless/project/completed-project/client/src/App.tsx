@@ -25,6 +25,16 @@ export default class App extends Component<AppProps, AppState> {
     this.handleLogout = this.handleLogout.bind(this)
   }
 
+  // componentDidMount() {
+  //
+  //   const { renewSession } = this.props.auth;
+  //
+  //   if (localStorage.getItem('isLoggedIn') === 'true') {
+  //     renewSession();
+  //   }
+  //
+  // }
+
   handleLogin() {
     this.props.auth.login()
   }
@@ -82,6 +92,7 @@ export default class App extends Component<AppProps, AppState> {
   }
 
   generateCurrentPage() {
+
     if (!this.props.auth.isAuthenticated()) {
       return <LogIn auth={this.props.auth} />
     }
