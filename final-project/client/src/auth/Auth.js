@@ -53,7 +53,6 @@ export default class Auth {
   }
 
   setSession(authResult) {
-
     // Set isLoggedIn flag in localStorage
     localStorage.setItem('isLoggedIn', 'true');
 
@@ -68,21 +67,7 @@ export default class Auth {
   }
 
   renewSession() {
-
     this.auth0.checkSession({}, (err, authResult) => {
-
-       // if(typeof authResult !== 'undefined'){
-       //
-       //   let stringifiedResult = JSON.stringify(authResult)
-       //   let currentAccessToken = authResult.accessToken
-       //   let currentIdToken = authResult.idToken
-       //
-       //   console.log(`${stringifiedResult} && ${currentAccessToken} && ${currentIdToken}`)
-       //
-       // }else{
-       //   console.log("authResult is undefined")
-       // }
-
        if (authResult && authResult.accessToken && authResult.idToken) {
          this.setSession(authResult);
        } else if (err) {
@@ -103,7 +88,7 @@ export default class Auth {
     localStorage.removeItem('isLoggedIn');
 
     this.auth0.logout({
-      return_to: authConfig.returnTo
+      return_to: window.location.origin
     });
 
     // navigate to the home route
