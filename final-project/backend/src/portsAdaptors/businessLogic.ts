@@ -1,30 +1,25 @@
 
-import { Group } from '../models/Group'
+import { Group, Image, CreateGroupRequest, CreateImageRequest} from '../models/Models'
+import { DataAccess } from '../dataLayer/dataLayer'
 
-import { GroupAccess } from '../dataLayer/groupsAccess'
-import { CreateGroupRequest } from '../requests/CreateGroupRequest'
-
-const groupAccess = new GroupAccess()
+const dataAccess = new DataAccess()
 
 export async function createGroup(createGroupRequest: CreateGroupRequest, userId: string): Promise<Group> {
-
   createGroupRequest['userId'] = userId
-  return await groupAccess.createGroup(createGroupRequest)
-
+  return await dataAccess.createGroup(createGroupRequest)
 }
 
 export async function getAllGroups(): Promise<Group[]> {
-  return groupAccess.getAllGroups()
+  return dataAccess.getAllGroups()
 }
 
 export async function groupExists(groupId: string):Promise<any> {
-  return groupAccess.groupExists(groupId)
+  return dataAccess.groupExists(groupId)
 }
 
-export async function createImage(createGroupRequest: CreateGroupRequest, userId: string): Promise<Group> {
-
-  createGroupRequest['userId'] = userId
-  return await groupAccess.createGroup(createGroupRequest)
+export async function createImage(createImageRequest: CreateImageRequest, groupId: string): Promise<Image> {
+  createImageRequest['groupId'] = groupId
+  return await dataAccess.createImage(createImageRequest, )
 
 }
 

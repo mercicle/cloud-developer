@@ -4,14 +4,12 @@ import 'source-map-support/register'
 import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 
 import { getUserId } from '../../utils/getIdsFromEvents'
-import { createGroup } from '../../businessLogic/groups'
-import { CreateGroupRequest } from '../../requests/CreateGroupRequest'
+import { createGroup } from '../../portsAdaptors/businessLogic'
+import { CreateGroupRequest } from '../../models/Models'
 
 const STATUS_CREATED = 201
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-
-  console.log('Processing event: ', event)
 
   const newGroup: CreateGroupRequest = JSON.parse(event.body)
   const userID = getUserId(event)

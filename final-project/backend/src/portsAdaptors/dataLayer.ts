@@ -5,7 +5,7 @@ const XAWS = AWSXRay.captureAWS(AWS)
 
 import { DocumentClient } from 'aws-sdk/clients/dynamodb'
 
-import { Group } from '../models/Group'
+import { Group, Image } from '../models/Models'
 
 // export interface Group {
 //   groupId: string
@@ -17,7 +17,7 @@ import { Group } from '../models/Group'
 
 import * as uuid from 'uuid'
 
-export class GroupAccess {
+export class DataAccess {
 
   constructor(
     private readonly docClient: DocumentClient = createDynamoDBClient(),
@@ -73,23 +73,21 @@ export class GroupAccess {
 
   }
 
-  async createImage(groupId: string, event: any) {
+  async createImage(imageRequestObject: any):Promise<Image> {
 
-    const newImage = JSON.parse(event.body)
     const timestamp = new Date().toISOString()
     const urlObject = await this.getSignedUrl()
 
-    const newImageItem = {groupId,
-                          timestamp,
+    const newImageItem = {timestamp,
                           ...newImage,
                           imageUrl: urlObject.imageUrl,
                           imageId: urlObject.imageId,
                           uploadUrl: urlObject.uploadUrl
                          }
+    const finalPutObjectString = JSON.stringify(newImageItem)
+    console.log(`Creating: ${finalPutObjectString}`)
 
-    console.log('Storing new image: ', JSON.stringify(newImageItem))
-
-    await docClient.put({TableName: this.imagesTable, Item: newImageItem }).promise()
+    await this.docClient.put({TableName: this.imagesTable, Item: newImageItem }).promise()
 
     return newImageItem
 

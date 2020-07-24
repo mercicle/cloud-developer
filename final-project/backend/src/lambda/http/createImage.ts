@@ -3,8 +3,8 @@ import 'source-map-support/register'
 import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 
 import { getGroupId } from '../../utils/getIdsFromEvents'
-import { groupExists, createImage } from '../../businessLogic/groups'
-import { CreateGroupRequest } from '../../requests/CreateGroupRequest'
+import { groupExists, createImage } from '../../portsAdaptors/businessLogic'
+import { CreateImageRequest } from '../../models/Models'
 
 const STATUS_CREATED = 201, STATUS_NOT_FOUND = 404
 
