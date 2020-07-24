@@ -270,10 +270,10 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties:
         AttributeDefinitions:
-          - AttributeName: id
+          - AttributeName: groupId
             AttributeType: S
         KeySchema:
-          - AttributeName: id
+          - AttributeName: groupId
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
         TableName: ${self:provider.environment.GROUPS_TABLE}
