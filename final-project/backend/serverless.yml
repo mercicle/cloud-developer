@@ -103,30 +103,6 @@ functions:
         Resource:
           - "*"
 
-  GetGroups:
-    handler: src/lambda/http/getGroups.handler
-    events:
-      - http:
-          method: get
-          path: groups
-          cors: true
-          authorizer: Auth
-
-    iamRoleStatements:
-      - Effect: Allow
-        Action:
-          - dynamodb:Query
-          - dynamodb:Scan
-          - dynamodb:GetItem
-
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.GROUPS_TABLE}
-      - Effect: Allow
-        Action:
-          - "xray:PutTraceSegments"
-          - "xray:PutTelemetryRecords"
-        Resource:
-          - "*"
-
   CreateGroup:
     handler: src/lambda/http/createGroup.handler
     events:
@@ -155,12 +131,12 @@ functions:
         Resource:
           - "*"
 
-  GetImages:
-    handler: src/lambda/http/getImages.handler
+  GetGroups:
+    handler: src/lambda/http/getGroups.handler
     events:
       - http:
           method: get
-          path: groups/{groupId}/images
+          path: groups
           cors: true
           authorizer: Auth
 
@@ -168,15 +144,10 @@ functions:
       - Effect: Allow
         Action:
           - dynamodb:Query
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.IMAGES_TABLE}
-      - Effect: Allow
-        Action:
-          - dynamodb:Query
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.IMAGES_TABLE}/index/${self:provider.environment.IMAGE_ID_INDEX}
-      - Effect: Allow
-        Action:
-          - s3:GetObject
-        Resource: arn:aws:s3:::${self:provider.environment.IMAGES_S3_BUCKET}/*
+          - dynamodb:Scan
+          - dynamodb:GetItem
+
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.GROUPS_TABLE}
       - Effect: Allow
         Action:
           - "xray:PutTraceSegments"
@@ -247,6 +218,36 @@ functions:
         Resource:
           - "*"
 
+  GetImages:
+    handler: src/lambda/http/getImages.handler
+    events:
+      - http:
+          method: get
+          path: groups/{groupId}/images
+          cors: true
+          authorizer: Auth
+
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:Query
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.IMAGES_TABLE}
+      - Effect: Allow
+        Action:
+          - dynamodb:Query
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.IMAGES_TABLE}/index/${self:provider.environment.IMAGE_ID_INDEX}
+      - Effect: Allow
+        Action:
+          - s3:GetObject
+        Resource: arn:aws:s3:::${self:provider.environment.IMAGES_S3_BUCKET}/*
+      - Effect: Allow
+        Action:
+          - "xray:PutTraceSegments"
+          - "xray:PutTelemetryRecords"
+        Resource:
+          - "*"
+
+
 
 resources:
   Resources:
@@ -313,6 +314,20 @@ resources:
         ValidateRequestBody: true
         ValidateRequestParameters: false
 
+    BucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        PolicyDocument:
+          Id: MyPolicy
+          Version: "2012-10-17"
+          Statement:
+            - Sid: PublicReadForGetBucketObjects
+              Effect: Allow
+              Principal: '*'
+              Action: 's3:GetObject'
+              Resource: 'arn:aws:s3:::${self:provider.environment.IMAGES_S3_BUCKET}/*'
+        Bucket: !Ref AttachmentsBucket
+
     AttachmentsBucket:
       Type: AWS::S3::Bucket
       DependsOn: SNSTopicPolicy
@@ -337,19 +352,10 @@ resources:
                 - HEAD
               MaxAge: 3000
 
-    BucketPolicy:
-      Type: AWS::S3::BucketPolicy
+    ThumbnailsBucket:
+      Type: AWS::S3::Bucket
       Properties:
-        PolicyDocument:
-          Id: MyPolicy
-          Version: "2012-10-17"
-          Statement:
-            - Sid: PublicReadForGetBucketObjects
-              Effect: Allow
-              Principal: '*'
-              Action: 's3:GetObject'
-              Resource: 'arn:aws:s3:::${self:provider.environment.IMAGES_S3_BUCKET}/*'
-        Bucket: !Ref AttachmentsBucket
+        BucketName: ${self:provider.environment.THUMBNAILS_S3_BUCKET}
 
     SNSTopicPolicy:
       Type: AWS::SNS::TopicPolicy
@@ -368,11 +374,6 @@ resources:
                   AWS:SourceArn: arn:aws:s3:::${self:provider.environment.IMAGES_S3_BUCKET}
         Topics:
           - !Ref ImagesTopic
-
-    ThumbnailsBucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        BucketName: ${self:provider.environment.THUMBNAILS_S3_BUCKET}
 
     ImagesTopic:
       Type: AWS::SNS::Topic
