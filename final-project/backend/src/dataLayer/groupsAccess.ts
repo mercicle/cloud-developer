@@ -25,7 +25,7 @@ export class GroupAccess {
     private readonly groupsTable = process.env.GROUPS_TABLE,
     private readonly imagesTable = process.env.IMAGES_TABLE,
     private readonly imagesIndex = process.env.IMAGE_ID_INDEX,
-    private readonly imagesbucket = process.env.IMAGES_S3_BUCKET,
+    private readonly imagesBucket = process.env.IMAGES_S3_BUCKET,
     private readonly thumbnailsBucket = process.env.THUMBNAILS_S3_BUCKET,
     private readonly urlExpTime = parseInt(process.env.SIGNED_URL_EXPIRATION)) {
   }
@@ -58,6 +58,50 @@ export class GroupAccess {
     const items = result.Items
 
     return items as Group[]
+
+  }
+
+  async groupExists(groupId: string):Promise<any> {
+
+    const testGroup = {TableName: this.groupsTable, Key: { groupId: groupId } }
+
+    const result = await this.docClient.get(testGroup).promise()
+
+    console.log('Rest of groupExists(): ', result)
+
+    return !!result.Item
+
+  }
+
+  async createImage(groupId: string, event: any) {
+
+    const newImage = JSON.parse(event.body)
+    const timestamp = new Date().toISOString()
+    const urlObject = await this.getSignedUrl()
+
+    const newImageItem = {groupId,
+                          timestamp,
+                          ...newImage,
+                          imageUrl: urlObject.imageUrl,
+                          imageId: urlObject.imageId,
+                          uploadUrl: urlObject.uploadUrl
+                         }
+
+    console.log('Storing new image: ', JSON.stringify(newImageItem))
+
+    await docClient.put({TableName: this.imagesTable, Item: newImageItem }).promise()
+
+    return newImageItem
+
+  }
+
+  async getSignedUrl(){
+
+      const imageID = uuid.v4()
+      const imageURL = `https://${this.imagesbucket}.s3.amazonaws.com/${imageID}`
+
+      const signedURL = this.s3Client.getSignedUrl('putObject',{ Bucket: this.imagesBucket, Key: imageID, Expires: this.urlExpTime })
+      return {imageId: imageID, imageUrl: imageURL, uploadUrl: signedURL}
 
   }
 

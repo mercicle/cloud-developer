@@ -9,8 +9,6 @@ const groupAccess = new GroupAccess()
 export async function createGroup(createGroupRequest: CreateGroupRequest, userId: string): Promise<Group> {
 
   createGroupRequest['userId'] = userId
-  createGroupRequest['timestamp'] = new Date().toISOString()
-
   return await groupAccess.createGroup(createGroupRequest)
 
 }
@@ -19,6 +17,16 @@ export async function getAllGroups(): Promise<Group[]> {
   return groupAccess.getAllGroups()
 }
 
+export async function groupExists(groupId: string):Promise<any> {
+  return groupAccess.groupExists(groupId)
+}
+
+export async function createImage(createGroupRequest: CreateGroupRequest, userId: string): Promise<Group> {
+
+  createGroupRequest['userId'] = userId
+  return await groupAccess.createGroup(createGroupRequest)
+
+}
 
 // models and requests
 // import { TodoItem } from '../models/TodoItem'

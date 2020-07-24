@@ -14,3 +14,8 @@ export function getUserId(event: APIGatewayProxyEvent): string {
 
   return parseUserId(jwtToken)
 }
+
+
+export function getGroupId(event: APIGatewayProxyEvent): string {
+  return event.pathParameters.groupId
+}

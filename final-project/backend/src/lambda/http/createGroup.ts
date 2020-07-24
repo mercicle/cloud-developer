@@ -3,7 +3,7 @@ import 'source-map-support/register'
 
 import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 
-import { getUserId } from '../../utils/getUserId'
+import { getUserId } from '../../utils/getIdsFromEvents'
 import { createGroup } from '../../businessLogic/groups'
 import { CreateGroupRequest } from '../../requests/CreateGroupRequest'
 
