@@ -40,7 +40,6 @@ provider:
     INDEX_NAME: UserIdIndex
     TODO_IMAGES_S3_BUCKET: merc-sls-todos-attached-images-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
-    IS_OFFLINE: false
 
   # enable xray tracing
   tracing:
@@ -100,6 +99,7 @@ functions:
           - "xray:PutTelemetryRecords"
         Resource:
           - "*"
+
   CreateTodo:
     handler: src/lambda/http/createTodo.handler
     events:
@@ -153,7 +153,7 @@ functions:
           - "xray:PutTelemetryRecords"
         Resource:
           - "*"
-          
+
   UpdateTodo:
     handler: src/lambda/http/updateTodo.handler
     events:
