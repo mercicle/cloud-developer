@@ -5,8 +5,7 @@ import { DataAccess } from './dataLayer'
 const dataAccess = new DataAccess()
 
 export async function createGroup(createGroupRequest: CreateGroupRequest, userId: string): Promise<Group> {
-  createGroupRequest['userId'] = userId
-  return await dataAccess.createGroup(createGroupRequest)
+  return await dataAccess.createGroup(createGroupRequest, userId)
 }
 
 export async function getAllGroups(): Promise<Group[]> {
@@ -18,8 +17,7 @@ export async function groupExists(groupId: string):Promise<any> {
 }
 
 export async function createImage(createImageRequest: CreateImageRequest, groupId: string): Promise<Image> {
-  createImageRequest['groupId'] = groupId
-  return await dataAccess.createImage(createImageRequest, )
+  return await dataAccess.createImage(createImageRequest, groupId)
 
 }
 

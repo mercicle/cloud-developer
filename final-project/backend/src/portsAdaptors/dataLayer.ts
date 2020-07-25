@@ -1,8 +1,9 @@
 
-import * as AWS  from 'aws-sdk'
-import * as AWSXRay from 'aws-xray-sdk'
+import * as AWS from 'aws-sdk'
+const AWSXRay = require('aws-xray-sdk')
 const XAWS = AWSXRay.captureAWS(AWS)
 import { DocumentClient } from 'aws-sdk/clients/dynamodb'
+
 import * as uuid from 'uuid'
 import Jimp from 'jimp/es'
 
@@ -21,23 +22,21 @@ export class DataAccess {
     private readonly urlExpTime = parseInt(process.env.SIGNED_URL_EXPIRATION)) {
   }
 
-  async createGroup(groupRequestObject: CreateGroupRequest): Promise<Group> {
+  async createGroup(groupRequestObject: CreateGroupRequest, userId: string): Promise<Group> {
 
-    const createdAt = new Date().toISOString()
+    const timestamp = new Date().toISOString()
     const groupId = uuid.v4()
-    groupRequestObject['timestamp'] = createdAt
-    groupRequestObject['groupId'] = groupId
 
-    const putObject = { TableName: this.groupsTable, Item: groupRequestObject }
+    const NewGroup = {userId,
+                      groupId,
+                      name: groupRequestObject.name,
+                      description: groupRequestObject.description,
+                      timestamp}
+
+    const putObject = { TableName: this.groupsTable, Item: NewGroup }
     await this.docClient.put(putObject).promise()
 
-    const returnObject = {userId: groupRequestObject.userId,
-                          groupId: groupRequestObject.groupId,
-                          name: groupRequestObject.name,
-                          description: groupRequestObject.description,
-                          timestamp: groupRequestObject.timestamp}
-
-    return returnObject
+    return NewGroup
 
   }
 
@@ -62,18 +61,19 @@ export class DataAccess {
 
   }
 
-  async createImage(imageRequestObject: CreateImageRequest):Promise<Image> {
+  async createImage(imageRequestObject: CreateImageRequest, groupId: string):Promise<Image> {
 
     const timestamp = new Date().toISOString()
     const urlObject = await this.getSignedUrl()
 
-    const newImageItem = {groupId: imageRequestObject.groupId,
+    const newImageItem = {groupId,
                           timestamp,
                           ...imageRequestObject,
                           imageUrl: urlObject.imageUrl,
                           imageId: urlObject.imageId,
                           uploadUrl: urlObject.uploadUrl
                          }
+
     const finalPutObjectString = JSON.stringify(newImageItem)
     console.log(`Creating Image: ${finalPutObjectString}`)
 
@@ -119,7 +119,7 @@ export class DataAccess {
 
     const result = await this.docClient.query(groupQuery).promise()
 
-    return result.Items
+    return result.Items as Image[]
   }
 
   async processImage(key: string) {

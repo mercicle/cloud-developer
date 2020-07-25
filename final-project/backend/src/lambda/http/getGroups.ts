@@ -7,6 +7,7 @@ const STATUS_OK = 200
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
 
+  console.log('Getting groups ', event)
   const groups = await getAllGroups()
 
   return {statusCode: STATUS_OK,
