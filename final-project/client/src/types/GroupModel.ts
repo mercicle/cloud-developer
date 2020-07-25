@@ -1,5 +1,5 @@
 export interface GroupModel {
-  id: string
+  groupId: string
   name: string
   description: string
 }

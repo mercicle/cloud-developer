@@ -17,7 +17,7 @@ export class Group extends React.PureComponent<GroupCardProps, GroupCardState> {
       <Card>
         <Card.Content>
           <Card.Header>
-            <Link to={`/images/${this.props.group.id}`}>{this.props.group.name}</Link>
+            <Link to={`/images/${this.props.group.groupId}`}>{this.props.group.name}</Link>
           </Card.Header>
           <Card.Description>{this.props.group.description}</Card.Description>
         </Card.Content>

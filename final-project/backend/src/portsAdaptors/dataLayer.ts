@@ -44,7 +44,7 @@ export class DataAccess {
 
     console.log('Getting all groups in getAllGroups()')
 
-    const result = await this.docClient.scan({ TableName: this.groupsTable}).promise()
+    const result = await this.docClient.query({ TableName: this.groupsTable}).promise()
     const items = result.Items
 
     return items as Group[]

@@ -10,8 +10,22 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   console.log('Getting groups ', event)
   const groups = await getAllGroups()
 
+  // let returnBody = ""
+  // if(!!groups){
+  //   returnBody  = JSON.stringify(groups)
+  // }else{
+  //   returnBody  = JSON.stringify([])
+  // }
+
+  // let returnBody = ""
+  // if(!!groups){
+  //   returnBody  = JSON.stringify({ groups: groups })
+  // }else{
+  //   returnBody  = JSON.stringify({ groups:[] })
+  // }
+
   return {statusCode: STATUS_OK,
           headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
-          body: JSON.stringify({ groups })
+          body: JSON.stringify({ groups: groups })
         }
 }
