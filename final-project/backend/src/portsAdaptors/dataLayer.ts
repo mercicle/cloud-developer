@@ -2,12 +2,11 @@
 import * as AWS  from 'aws-sdk'
 import * as AWSXRay from 'aws-xray-sdk'
 const XAWS = AWSXRay.captureAWS(AWS)
-
 import { DocumentClient } from 'aws-sdk/clients/dynamodb'
+import * as uuid from 'uuid'
+import Jimp from 'jimp/es'
 
 import { Group, Image, CreateImageRequest, CreateGroupRequest } from '../models/Models'
-
-import * as uuid from 'uuid'
 
 export class DataAccess {
 
@@ -16,7 +15,7 @@ export class DataAccess {
     private readonly s3Client = createS3Client(),
     private readonly groupsTable = process.env.GROUPS_TABLE,
     private readonly imagesTable = process.env.IMAGES_TABLE,
-    private readonly imagesIndex = process.env.IMAGE_ID_INDEX,
+    private readonly imageIdIndex = process.env.IMAGE_ID_INDEX,
     private readonly imagesBucket = process.env.IMAGES_S3_BUCKET,
     private readonly thumbnailsBucket = process.env.THUMBNAILS_S3_BUCKET,
     private readonly urlExpTime = parseInt(process.env.SIGNED_URL_EXPIRATION)) {
@@ -87,14 +86,14 @@ export class DataAccess {
   async getSignedUrl(){
 
       const imageID = uuid.v4()
-      const imageURL = `https://${this.imagesbucket}.s3.amazonaws.com/${imageID}`
+      const imageURL = `https://${this.imagesBucket}.s3.amazonaws.com/${imageID}`
 
       const signedURL = this.s3Client.getSignedUrl('putObject',{ Bucket: this.imagesBucket, Key: imageID, Expires: this.urlExpTime })
       return {imageId: imageID, imageUrl: imageURL, uploadUrl: signedURL}
 
   }
 
-  async getImage(imageId: string):Promise<Image>{
+  async getImage(imageId: string):Promise<any>{
 
     const imageQuery = { TableName : this.imagesTable,
                          IndexName : this.imageIdIndex,
@@ -122,6 +121,26 @@ export class DataAccess {
 
     return result.Items
   }
+
+  async processImage(key: string) {
+
+    console.log('Processing S3 item with key: ', key)
+
+    const response = await this.s3Client.getObject({Bucket: this.imagesBucket, Key: key }).promise()
+
+    const body = response.Body
+    const image = await Jimp.read(body)
+
+    console.log('Resizing image')
+    image.resize(150, Jimp.AUTO)
+    const convertedBuffer = await image.getBufferAsync(Jimp.AUTO)
+
+    console.log(`Writing image back to S3 bucket: ${this.thumbnailsBucket}`)
+
+    await this.s3Client.putObject({ Bucket: this.thumbnailsBucket, Key: `${key}.jpeg`, Body: convertedBuffer }).promise()
+
+  }
+
 
 }
 

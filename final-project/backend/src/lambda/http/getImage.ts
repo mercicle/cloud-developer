@@ -8,7 +8,6 @@ const STATUS_OK = 200, STATUS_NOT_FOUND = 404
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
 
-  console.log('Caller event', event)
   const imageId = getImageId(event)
   const imageResult = await getImage(imageId)
 
