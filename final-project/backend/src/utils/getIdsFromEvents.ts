@@ -19,3 +19,7 @@ export function getUserId(event: APIGatewayProxyEvent): string {
 export function getGroupId(event: APIGatewayProxyEvent): string {
   return event.pathParameters.groupId
 }
+
+export function getImageId(event: APIGatewayProxyEvent): string {
+  return event.pathParameters.imageId
+}

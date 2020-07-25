@@ -24,7 +24,10 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
   const newItem = await createImage(newImage, groupId)
 
-  return { statusCode: STATUS_CREATED, body: JSON.stringify({newItem: newItem, uploadUrl: newItem.uploadUrl})}
+  return { statusCode: STATUS_CREATED,
+           headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
+           body: JSON.stringify({newItem: newItem, uploadUrl: newItem.uploadUrl})
+         }
 }
 
 

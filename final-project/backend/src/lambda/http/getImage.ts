@@ -1,43 +1,27 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda'
 import 'source-map-support/register'
-import * as AWS  from 'aws-sdk'
-import * as AWSXRay from 'aws-xray-sdk'
 
-const XAWS = AWSXRay.captureAWS(AWS)
+import { getImageId } from '../../utils/getIdsFromEvents'
+import { getImage } from '../../portsAdaptors/businessLogic';
 
-const docClient = new XAWS.DynamoDB.DocumentClient()
-
-const imagesTable = process.env.IMAGES_TABLE
-const imageIdIndex = process.env.IMAGE_ID_INDEX
+const STATUS_OK = 200, STATUS_NOT_FOUND = 404
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+
   console.log('Caller event', event)
-  const imageId = event.pathParameters.imageId
+  const imageId = getImageId(event)
+  const imageResult = await getImage(imageId)
 
-  const result = await docClient.query({
-      TableName : imagesTable,
-      IndexName : imageIdIndex,
-      KeyConditionExpression: 'imageId = :imageId',
-      ExpressionAttributeValues: {
-          ':imageId': imageId
-      }
-  }).promise()
-
-  if (result.Count !== 0) {
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify(result.Items[0])
-    }
+  if (imageResult.Count !== 0) {
+    return { statusCode: STATUS_OK,
+             headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
+             body: JSON.stringify(imageResult.Items[0])
+           }
+  }else{
+    return { statusCode: STATUS_NOT_FOUND,
+             headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
+             body: ''
+           }
   }
 
-  return {
-    statusCode: 404,
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    },
-    body: ''
-  }
 }

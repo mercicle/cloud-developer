@@ -5,15 +5,7 @@ const XAWS = AWSXRay.captureAWS(AWS)
 
 import { DocumentClient } from 'aws-sdk/clients/dynamodb'
 
-import { Group, Image } from '../models/Models'
-
-// export interface Group {
-//   groupId: string
-//   name: string
-//   description: string
-//   userId: string
-//   timestamp: string
-// }
+import { Group, Image, CreateImageRequest, CreateGroupRequest } from '../models/Models'
 
 import * as uuid from 'uuid'
 
@@ -30,7 +22,7 @@ export class DataAccess {
     private readonly urlExpTime = parseInt(process.env.SIGNED_URL_EXPIRATION)) {
   }
 
-  async createGroup(groupRequestObject: any): Promise<Group> {
+  async createGroup(groupRequestObject: CreateGroupRequest): Promise<Group> {
 
     const createdAt = new Date().toISOString()
     const groupId = uuid.v4()
@@ -52,7 +44,7 @@ export class DataAccess {
 
   async getAllGroups(): Promise<Group[]> {
 
-    console.log('Getting all groups')
+    console.log('Getting all groups in getAllGroups()')
 
     const result = await this.docClient.scan({ TableName: this.groupsTable}).promise()
     const items = result.Items
@@ -67,25 +59,24 @@ export class DataAccess {
 
     const result = await this.docClient.get(testGroup).promise()
 
-    console.log('Rest of groupExists(): ', result)
-
     return !!result.Item
 
   }
 
-  async createImage(imageRequestObject: any):Promise<Image> {
+  async createImage(imageRequestObject: CreateImageRequest):Promise<Image> {
 
     const timestamp = new Date().toISOString()
     const urlObject = await this.getSignedUrl()
 
-    const newImageItem = {timestamp,
-                          ...newImage,
+    const newImageItem = {groupId: imageRequestObject.groupId,
+                          timestamp,
+                          ...imageRequestObject,
                           imageUrl: urlObject.imageUrl,
                           imageId: urlObject.imageId,
                           uploadUrl: urlObject.uploadUrl
                          }
     const finalPutObjectString = JSON.stringify(newImageItem)
-    console.log(`Creating: ${finalPutObjectString}`)
+    console.log(`Creating Image: ${finalPutObjectString}`)
 
     await this.docClient.put({TableName: this.imagesTable, Item: newImageItem }).promise()
 
@@ -101,6 +92,35 @@ export class DataAccess {
       const signedURL = this.s3Client.getSignedUrl('putObject',{ Bucket: this.imagesBucket, Key: imageID, Expires: this.urlExpTime })
       return {imageId: imageID, imageUrl: imageURL, uploadUrl: signedURL}
 
+  }
+
+  async getImage(imageId: string):Promise<Image>{
+
+    const imageQuery = { TableName : this.imagesTable,
+                         IndexName : this.imageIdIndex,
+                         KeyConditionExpression: 'imageId = :imageId',
+                         ExpressionAttributeValues: { ':imageId': imageId}
+                       }
+
+    const result = await this.docClient.query(imageQuery).promise()
+
+    return result
+
+  }
+
+  async getImagesOfGroup(groupId: string):Promise<Image[]>{
+
+    const groupQuery = {TableName: this.imagesTable,
+                        KeyConditionExpression: 'groupId = :groupId',
+                        ExpressionAttributeValues: {
+                          ':groupId': groupId
+                        },
+                        ScanIndexForward: false
+                      }
+
+    const result = await this.docClient.query(groupQuery).promise()
+
+    return result.Items
   }
 
 }

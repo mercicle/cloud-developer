@@ -10,7 +10,7 @@
 #     - BucketPolicy
 
 service:
-  name: serverless-udagram-app
+  name: serverless-image-mgmt-app
 
 plugins:
   - serverless-webpack
@@ -69,8 +69,8 @@ custom:
     api:
       info:
         version: v1.0.0
-        title: Udagram API
-        description: Serverless application for images sharing
+        title: Image MGMT API
+        description: Serverless application for images management
     models:
       - name: GroupRequest
         contentType: application/json
@@ -205,11 +205,11 @@ functions:
                 - ${self:custom.topicName}
           topicName: ${self:custom.topicName}
     iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - s3:PutObject
-        - s3:GetObject
-      Resource: "arn:aws:s3:::${self:provider.environment.THUMBNAILS_S3_BUCKET}/*"
+      - Effect: Allow
+        Action:
+          - s3:PutObject
+          - s3:GetObject
+        Resource: "arn:aws:s3:::${self:provider.environment.THUMBNAILS_S3_BUCKET}/*"
 
       - Effect: Allow
         Action:
@@ -357,6 +357,12 @@ resources:
       Properties:
         BucketName: ${self:provider.environment.THUMBNAILS_S3_BUCKET}
 
+    ImagesTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        DisplayName: Image bucket topic
+        TopicName: ${self:custom.topicName}
+
     SNSTopicPolicy:
       Type: AWS::SNS::TopicPolicy
       Properties:
@@ -374,9 +380,3 @@ resources:
                   AWS:SourceArn: arn:aws:s3:::${self:provider.environment.IMAGES_S3_BUCKET}
         Topics:
           - !Ref ImagesTopic
-
-    ImagesTopic:
-      Type: AWS::SNS::Topic
-      Properties:
-        DisplayName: Image bucket topic
-        TopicName: ${self:custom.topicName}

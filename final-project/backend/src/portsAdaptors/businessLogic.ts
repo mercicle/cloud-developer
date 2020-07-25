@@ -23,6 +23,14 @@ export async function createImage(createImageRequest: CreateImageRequest, groupI
 
 }
 
+export async function getImage(imageId: string): Promise<Image> {
+  return await dataAccess.getImage(imageId)
+}
+
+export async function getImagesOfGroup(groupId: string): Promise<Image[]> {
+  return await dataAccess.getImagesOfGroup(groupId)
+}
+
 // models and requests
 // import { TodoItem } from '../models/TodoItem'
 // import { TodoUpdate} from '../models/TodoUpdate'
