@@ -45,21 +45,6 @@ provider:
     lambda: true
     apiGateway: true
 
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - codedeploy:*
-      Resource:
-        - '*'
-
-    - Effect: Allow
-      Action:
-        - dynamodb:Scan
-        - dynamodb:PutItem
-        - dynamodb:GetItem
-      Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.GROUPS_TABLE}
-
-
 custom:
 
   topicName: udagram-fp-images-topic-${self:provider.stage}
@@ -144,6 +129,8 @@ functions:
       - Effect: Allow
         Action:
           - dynamodb:Query
+          - dynamodb:GetItem
+          - dynamodb:Scan
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.GROUPS_TABLE}
       - Effect: Allow
         Action:
@@ -167,6 +154,7 @@ functions:
             description: Create a new image
             requestModels:
               'application/json': ImageRequest
+
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -201,6 +189,7 @@ functions:
                 - Ref: AWS::AccountId
                 - ${self:custom.topicName}
           topicName: ${self:custom.topicName}
+
     iamRoleStatements:
       - Effect: Allow
         Action:
