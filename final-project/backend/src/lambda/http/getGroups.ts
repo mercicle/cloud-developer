@@ -27,6 +27,9 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   // have also tried
   // JSON.stringify({ groups: groups })
   // JSON.stringify({ groups })
+  const returnGroups = JSON.stringify(groups)
+  console.log(`Returning groups: ${returnGroups}`)
+
   return {statusCode: STATUS_OK,
           headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
           body: JSON.stringify(groups)

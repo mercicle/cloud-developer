@@ -17,8 +17,11 @@ plugins:
   - serverless-reqvalidator-plugin
   - serverless-aws-documentation
   - serverless-iam-roles-per-function
-
+  - serverless-dynamodb-local
+  - serverless-offline
+  
 provider:
+
   name: aws
   runtime: nodejs12.x
   stage: ${opt:stage, 'dev'}
@@ -35,10 +38,9 @@ provider:
 
     SIGNED_URL_EXPIRATION: 300
 
-    AUTH_0_SECRET_ID: Auth0Secret-${self:provider.stage}
-    AUTH_0_SECRET_FIELD: auth0Secret
-
     REGION: ${self:provider.region}
+
+    IS_OFFLINE: false
 
   # enable xray tracing
   tracing:
