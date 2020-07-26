@@ -12,7 +12,7 @@ import { Group, Image, CreateImageRequest, CreateGroupRequest } from '../models/
 export class DataAccess {
 
   constructor(
-    private readonly docClient: DocumentClient = createDynamoDBClient(),
+    private readonly docClient: DocumentClient = createDynamoDBClient(process.env.IS_OFFLINE),
     private readonly s3Client = createS3Client(),
     private readonly groupsTable = process.env.GROUPS_TABLE,
     private readonly imagesTable = process.env.IMAGES_TABLE,
@@ -144,9 +144,9 @@ export class DataAccess {
 
 }
 
-function createDynamoDBClient() {
+function createDynamoDBClient(isOffline: string) {
 
-  if (process.env.IS_OFFLINE) {
+  if (isOffline=="true") {
     console.log('Creating a local DynamoDB instance')
     return new XAWS.DynamoDB.DocumentClient({
       region: 'localhost',

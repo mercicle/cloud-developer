@@ -11,7 +11,7 @@ const logger = createLogger('auth')
 
 // The URL that can be used to download a certificate that can be used to verify JWT token signature.
 // From Auth0 page -> Show Advanced Settings -> Endpoints -> JSON Web Key Set
-const jwksUrl = 'https://dev-xbcxqezj.us.auth0.com/.well-known/jwks.json'
+const jwksUrl = 'https://dev-aqymclse.us.auth0.com/.well-known/jwks.json'
 
 export const handler = async ( event: CustomAuthorizerEvent ): Promise<CustomAuthorizerResult> => {
 
