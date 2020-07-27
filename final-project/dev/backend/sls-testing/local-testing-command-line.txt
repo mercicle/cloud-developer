@@ -1,0 +1,1 @@
+sls invoke --function --path ./sls-testing/getGroupsRequest.json --stage dev --region us-east-2 --type RequestResponse

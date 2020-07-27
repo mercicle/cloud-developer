@@ -148,7 +148,10 @@ function createDynamoDBClient(isOffline: string) {
 
   if (isOffline=="true") {
     console.log('Creating a local DynamoDB instance')
-    return new XAWS.DynamoDB.DocumentClient({ region: 'localhost', endpoint: 'http://localhost:8000'})
+    return new XAWS.DynamoDB.DocumentClient({
+      region: 'localhost',
+      endpoint: 'http://localhost:8000'
+    })
   }
 
   return new XAWS.DynamoDB.DocumentClient()

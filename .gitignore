@@ -36,3 +36,4 @@ node_modules
 venv/
 .vscode
 final-project/backend/.serverless
+final-project/dev/backend/.serverless
