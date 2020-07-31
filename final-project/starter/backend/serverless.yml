@@ -20,6 +20,7 @@ provider:
     apiGateway: true
 
   environment:
+
     GROUPS_TABLE: sls-udagram-starter-groups-${self:provider.stage}
     IMAGES_TABLE: sls-udagram-starter-images-${self:provider.stage}
     IMAGE_ID_INDEX: ImageIdIndex
@@ -75,6 +76,7 @@ provider:
       Action:
         - kms:Decrypt
       Resource: !GetAtt KMSKey.Arn
+
 
 custom:
   topicName: imagesTopic-${self:provider.stage}
@@ -133,6 +135,8 @@ functions:
           method: get
           path: groups/{groupId}/images
           cors: true
+          authorizer: RS256Auth
+
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -142,6 +146,20 @@ functions:
         Action:
           - dynamodb:GetItem
         Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.GROUPS_TABLE}
+      - Effect: Allow
+        Action:
+          - s3:GetObject
+        Resource: arn:aws:s3:::${self:provider.environment.THUMBNAILS_S3_BUCKET}/*
+      - Effect: Allow
+        Action:
+          - s3:GetObject
+        Resource: arn:aws:s3:::${self:provider.environment.IMAGES_S3_BUCKET}/*
+      - Effect: Allow
+        Action:
+          - "xray:PutTraceSegments"
+          - "xray:PutTelemetryRecords"
+        Resource:
+          - "*"
 
   CreateImage:
     handler: src/lambda/http/createImage.handler
@@ -303,7 +321,7 @@ resources:
       Type: AWS::S3::BucketPolicy
       Properties:
         PolicyDocument:
-          Id: MyPolicy
+          Id: Policy
           Version: "2012-10-17"
           Statement:
             - Sid: PublicReadForGetBucketObjects

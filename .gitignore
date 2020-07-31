@@ -37,3 +37,4 @@ venv/
 .vscode
 final-project/backend/.serverless
 final-project/dev/backend/.serverless
+final-project/starter/backend/.serverless
