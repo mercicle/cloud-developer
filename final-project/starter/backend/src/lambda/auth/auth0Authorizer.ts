@@ -8,6 +8,7 @@ import { JwtToken } from '../../auth/JwtToken'
 
 const secretId = process.env.AUTH_0_SECRET_ID
 const secretField = process.env.AUTH_0_SECRET_FIELD
+const region = process.env.REGION
 
 export const handler = middy(async (event: CustomAuthorizerEvent, context): Promise<CustomAuthorizerResult> => {
   try {
@@ -64,7 +65,7 @@ function verifyToken(authHeader: string, secret: string): JwtToken {
 
 handler.use(
   secretsManager({
-    awsSdkOptions: { region: 'us-east-1' },
+    awsSdkOptions: { region: region },
     cache: true,
     cacheExpiryInMillis: 60000,
     // Throw an error if can't read the secret

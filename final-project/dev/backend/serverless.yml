@@ -10,7 +10,7 @@
 #     - BucketPolicy
 
 service:
-  name: serverless-image-mgmt-app
+  name: udagram-fp
 
 plugins:
   - serverless-webpack
@@ -27,12 +27,11 @@ provider:
   environment:
 
     GROUPS_TABLE: udagram-fp-groups-${self:provider.stage}
-
     IMAGES_TABLE: udagram-fp-images-${self:provider.stage}
     IMAGE_ID_INDEX: ImageIdIndex
 
-    IMAGES_S3_BUCKET: merc-fp-serverless-udagram-images-${self:provider.stage}
-    THUMBNAILS_S3_BUCKET: merc-fp-serverless-udagram-thumbnail-${self:provider.stage}
+    IMAGES_S3_BUCKET: udagram-fp-sls-udagram-images-${self:provider.stage}
+    THUMBNAILS_S3_BUCKET: udagram-fp-sls-udagram-thumbnail-${self:provider.stage}
 
     SIGNED_URL_EXPIRATION: 300
 
@@ -83,7 +82,9 @@ custom:
 functions:
 
   Auth:
-    handler: src/lambda/auth/auth0Authorizer.handler
+    #handler: src/lambda/auth/rs256Auth0Authorizer.handler # using certificate
+    #handler: src/lambda/auth/auth0AuthorizerWKS.handler # using JSON Web Key Set
+    handler: src/lambda/auth/auth0Authorizer.handler # using secret manager
     iamRoleStatements:
       - Effect: Allow
         Action:

@@ -1,4 +1,4 @@
-export const apiEndpoint = 'https://5qfgt9nu2a.execute-api.us-east-2.amazonaws.com/dev'
+export const apiEndpoint = 'https://mokg23z4c6.execute-api.us-east-2.amazonaws.com/dev'
 
 export const authConfig = {
   domain: 'dev-aqymclse.us.auth0.com',
