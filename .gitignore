@@ -38,3 +38,4 @@ venv/
 final-project/backend/.serverless
 final-project/dev/backend/.serverless
 final-project/starter/backend/.serverless
+final-project/dev-v2/backend/.serverless

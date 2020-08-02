@@ -1,6 +1,6 @@
 
 service:
-  name: udagram-fp
+  name: udagram-fp-v2
 
 plugins:
   - serverless-webpack
@@ -16,21 +16,16 @@ provider:
   region: ${opt:region, 'us-east-2'}
   environment:
 
-    GROUPS_TABLE: udagram-fp-groups-${self:provider.stage}
-    IMAGES_TABLE: udagram-fp-images-${self:provider.stage}
+    GROUPS_TABLE: udagram-fp-v2-groups-${self:provider.stage}
+    IMAGES_TABLE: udagram-fp-v2-images-${self:provider.stage}
     IMAGE_ID_INDEX: ImageIdIndex
 
-    IMAGES_S3_BUCKET: udagram-fp-sls-udagram-images-${self:provider.stage}
-    THUMBNAILS_S3_BUCKET: udagram-fp-sls-udagram-thumbnail-${self:provider.stage}
+    IMAGES_S3_BUCKET: udagram-fp-v2-sls-udagram-images-${self:provider.stage}
+    THUMBNAILS_S3_BUCKET: udagram-fp-v2-sls-udagram-thumbnail-${self:provider.stage}
 
     SIGNED_URL_EXPIRATION: 300
 
     REGION: ${self:provider.region}
-
-    IS_OFFLINE: false
-
-    AUTH_0_SECRET_ID: Auth0Secret-${self:provider.stage}
-    AUTH_0_SECRET_FIELD: auth0Secret
 
 
   # enable xray tracing
@@ -40,15 +35,15 @@ provider:
 
 custom:
 
-  topicName: udagram-fp-images-topic-${self:provider.stage}
+  topicName: udagram-fp-v2-images-topic-${self:provider.stage}
 
   documentation:
 
     api:
       info:
-        version: v1.0.0
-        title: Image MGMT API
-        description: Serverless application for images management
+        version: v2.0.0
+        title: Image MGMT API V2
+        description: SLS vs using rs256
     models:
       - name: GroupRequest
         contentType: application/json
@@ -58,24 +53,10 @@ custom:
         schema: ${file(schemas/create-image-request.json)}
 
 
-# functions
-# - Auth
-# - CreateGroup
-
-# - GetGroups
-
-# - CreateImage
-# - ResizeImage
-
-# - GetImages
-
 functions:
 
   Auth:
-    #handler: src/lambda/auth/fakeAuthorizer.handler # fake authorizer
-    #handler: src/lambda/auth/rs256Auth0Authorizer.handler # using certificate
-    handler: src/lambda/auth/auth0AuthorizerWKS.handler # using JSON Web Key Set
-    #handler: src/lambda/auth/auth0Authorizer.handler # using secret manager
+    handler: src/lambda/auth/Auth0Authorizer.handler
     iamRoleStatements:
       - Effect: Allow
         Action:
@@ -119,6 +100,7 @@ functions:
           method: get
           path: groups
           cors: true
+          authorizer: Auth
 
     iamRoleStatements:
       - Effect: Allow
@@ -229,7 +211,6 @@ functions:
           - "*"
 
 
-
 resources:
   Resources:
 
@@ -248,10 +229,10 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties:
         AttributeDefinitions:
-          - AttributeName: groupId
+          - AttributeName: id
             AttributeType: S
         KeySchema:
-          - AttributeName: groupId
+          - AttributeName: id
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
         TableName: ${self:provider.environment.GROUPS_TABLE}
@@ -358,37 +339,3 @@ resources:
                   AWS:SourceArn: arn:aws:s3:::${self:provider.environment.IMAGES_S3_BUCKET}
         Topics:
           - !Ref ImagesTopic
-
-    KMSKey:
-      Type: AWS::KMS::Key
-      Properties:
-        Description: KMS key to encrypt Auth0 secret
-        KeyPolicy:
-          Version: '2012-10-17'
-          Id: key-default-1
-          Statement:
-            - Sid: Allow administration of the key
-              Effect: Allow
-              Principal:
-                AWS:
-                  Fn::Join:
-                  - ':'
-                  - - 'arn:aws:iam:'
-                    - Ref: AWS::AccountId
-                    - 'root'
-              Action:
-                - 'kms:*'
-              Resource: '*'
-
-    KMSKeyAlias:
-      Type: AWS::KMS::Alias
-      Properties:
-        AliasName: alias/auth0Key-${self:provider.stage}
-        TargetKeyId: !Ref KMSKey
-
-    Auth0Secret:
-      Type: AWS::SecretsManager::Secret
-      Properties:
-        Name: ${self:provider.environment.AUTH_0_SECRET_ID}
-        Description: Auth0 secret
-        KmsKeyId: !Ref KMSKey

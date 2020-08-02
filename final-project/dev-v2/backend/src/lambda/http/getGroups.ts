@@ -32,7 +32,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
   return {statusCode: STATUS_OK,
           headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': true },
-          body: JSON.stringify({groups})
+          body: JSON.stringify({groups:groups})
          }
 
 }
