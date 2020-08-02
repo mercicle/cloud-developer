@@ -82,9 +82,9 @@ custom:
 functions:
 
   Auth:
-    handler: src/lambda/auth/fakeAuthorizer.handler # fake authorizer
+    #handler: src/lambda/auth/fakeAuthorizer.handler # fake authorizer
     #handler: src/lambda/auth/rs256Auth0Authorizer.handler # using certificate
-    #handler: src/lambda/auth/auth0AuthorizerWKS.handler # using JSON Web Key Set
+    handler: src/lambda/auth/auth0AuthorizerWKS.handler # using JSON Web Key Set
     #handler: src/lambda/auth/auth0Authorizer.handler # using secret manager
     iamRoleStatements:
       - Effect: Allow
